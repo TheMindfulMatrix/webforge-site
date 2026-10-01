@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start — WebForge</title>
+<meta name="description" content="Email connect@webforgecreate.org or send a short note. I'll look at your current site and tell you what I'd change, free and with no obligation.">
+<meta property="og:title" content="Start — WebForge">
+<meta property="og:description" content="Tell me about your organization. I'll look at your site and tell you what I'd change.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">Web<span>Forge</span></a>
+    <nav class="site" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="what-you-get.html">What you get</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="start.html" aria-current="page">Start</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <div class="wrap hero">
+    <p class="eyebrow">Start</p>
+    <h1>Tell me about your club.</h1>
+    <p class="lede">
+      Easiest thing: email me at
+      <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a>.
+      Or use the form below — it goes to the same place.
+    </p>
+    <p>
+      I'll look at your current site and send you what I'd change: how it loads, how it behaves on a
+      phone, whether your domain is actually resolving, what a parent sees first.
+      <strong>Free, and you're not obligated to anything.</strong>
+    </p>
+    <div class="note">
+      <p><strong>Straight about one thing:</strong> the self-serve demo builder isn't switched on
+      yet. Right now you email me and we do it together — same price, same result, just by hand
+      while I finish the automatic version. I'd rather say that than have you click a button that
+      doesn't work.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap" style="max-width:640px;margin-left:0">
+      <h2>Send a note</h2>
+      <noscript>
+        <div class="note">
+          <p>This form needs JavaScript to open your email app. It's off, so please
+          <a href="mailto:connect@webforgecreate.org">email me directly</a> instead — same result.</p>
+        </div>
+      </noscript>
+      <form id="inquiry" action="mailto:connect@webforgecreate.org" method="post" enctype="text/plain">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="org">Club, facility or studio</label>
+          <input id="org" name="organization" type="text" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="message">What's going on with your site?</label>
+          <textarea id="message" name="message" placeholder="Even one line is fine. &quot;It's old and nobody has touched it in three years&quot; tells me plenty."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send it</button>
+        <p class="small" style="margin-top:1.2rem">
+          I collect your name, organization and email only so I can reply to you. I don't sell it,
+          share it, or add you to a mailing list. If you'd rather not use a form, just
+          <a href="mailto:connect@webforgecreate.org">email me</a> directly.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>What happens next</h2>
+      <ol class="steps" style="margin-top:2rem">
+        <li>
+          <h3>I reply, usually same day</h3>
+          <p>With what I found on your current site. Specific things, not a sales pitch.</p>
+        </li>
+        <li>
+          <h3>We talk for ten minutes if you want to</h3>
+          <p>You decide if it's worth going further. If I don't think I'm the right fit for what you
+          need, I'll tell you that instead.</p>
+        </li>
+        <li>
+          <h3>If it's a fit, you get it in writing</h3>
+          <p>Scope, price, timeline. You read it before you pay anything.</p>
+        </li>
+      </ol>
+      <div class="note">
+        <p><strong>No sales sequence.</strong> If you don't reply, I'm not going to chase you with
+        five follow-ups. Reach out again whenever it makes sense.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* Compose a mailto from the form. No data leaves the browser until the visitor
+   sends the email themselves from their own mail app. */
+(function () {
+  var form = document.getElementById('inquiry');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var get = function (id) { return (document.getElementById(id).value || '').trim(); };
+    var subject = 'Website inquiry — ' + (get('org') || get('name') || 'WebForge');
+    var body =
+      'Name: ' + get('name') + '\n' +
+      'Organization: ' + get('org') + '\n' +
+      'Email: ' + get('email') + '\n\n' +
+      get('message');
+    window.location.href = 'mailto:connect@webforgecreate.org'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
+
+<footer class="site">
+  <div class="wrap rows">
+    <div>
+      <p><strong style="color:var(--text-dim)">WebForge</strong> — St. Louis, Missouri</p>
+      <p><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+    </div>
+    <div>
+      <p>I use AI tools in my work. I'm responsible for reviewing and delivering everything I hand over.</p>
+      <p>No tracking on this site.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
