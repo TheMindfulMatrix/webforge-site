@@ -2,177 +2,590 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start — WebForge</title>
-<meta name="description" content="Email connect@webforgecreate.org or send a short note. I'll look at your current site and tell you what I'd change, free and with no obligation.">
-<meta property="og:title" content="Start — WebForge">
-<meta property="og:description" content="Tell me about your organization. I'll look at your site and tell you what I'd change.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Start — a free site check, or a demo of your club’s site · WebForge</title>
+<meta name="description" content="Get your club’s current site checked, free. Or answer ten questions and I’ll build a demo of your new site by hand from them. Nothing is charged on this page.">
+<meta property="og:title" content="Start — tell me about your club">
+<meta property="og:description" content="A free check of your current site, or ten questions for a demo of your new one. Nothing is charged on this page.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0A0B">
+<!-- ICONS + SHARING · same on every page; only canonical and og:url change per page -->
+<link rel="canonical" href="https://webforgecreate.org/start.html">
+<meta property="og:url" content="https://webforgecreate.org/start.html">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:site_name" content="WebForge">
+<meta property="og:image" content="https://webforgecreate.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WebForge — Most club websites break quietly. 35 St. Louis club sites checked, 28 had something concretely wrong.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- HEAD · copy the six lines below into every page (the inline script stops the phone menu flashing open) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<!-- This page only: the intake (no backend — everything becomes an email the visitor sends) -->
+<script src="start.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 
-<header class="site">
-  <div class="wrap bar">
-    <a class="brand" href="index.html">Web<span>Forge</span></a>
-    <nav class="site" aria-label="Main">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="what-you-get.html">What you get</a></li>
-        <li><a href="work.html">Work</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="start.html" aria-current="page">Start</a></li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE HEADER · copy this block verbatim into every page.
+     The ONLY change per page: move aria-current="page" to that page's link.
+     (On the Styles link, leave it off — it is a spot on the home page.)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<header class="site-header surface-ink" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="index.html">
+      <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+      <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__bars" aria-hidden="true"></span><span data-nav-label>Menu</span></button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html"><span class="nav__no" aria-hidden="true">01</span>Home</a></li>
+        <li><a href="what-you-get.html"><span class="nav__no" aria-hidden="true">02</span>What you get</a></li>
+        <li><a href="index.html#styles"><span class="nav__no" aria-hidden="true">03</span>Styles</a></li>
+        <li><a href="pricing.html"><span class="nav__no" aria-hidden="true">04</span>Pricing</a></li>
+        <li class="nav__start"><a class="btn btn--accent btn--sm" href="start.html" aria-current="page"><span class="nav__no" aria-hidden="true">05</span>Start <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a></li>
       </ul>
     </nav>
   </div>
 </header>
+<!-- ═══════════════════════════ END SITE HEADER ═══════════════════════════ -->
 
 <main id="main">
 
-  <div class="wrap hero">
-    <p class="eyebrow">Start</p>
-    <h1>Tell me about your club.</h1>
-    <p class="lede">
-      Easiest thing: email me at
-      <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a>.
-      Or use the form below — it goes to the same place.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="mailto:connect@webforgecreate.org">Email me directly</a>
-      <a class="btn btn-ghost" href="#send">Use the form instead</a>
-    </div>
-  </div>
+  <!-- ═══════════ HERO · two ways in ═══════════ -->
+  <section class="hero hero--start surface-ink" id="top" aria-labelledby="hero-title" data-hero>
+    <canvas class="hero__lanes" aria-hidden="true"></canvas>
+    <div class="wrap hero__grid">
+      <p class="hero__meta mono"><span>Start</span><span>Two ways in</span><span>Nothing charged here</span></p>
 
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow">One honest caveat</p>
-      <h2>The demo builder isn't switched on yet.</h2>
-      <div class="note">
-        <p><strong>Straight about one thing:</strong> the self-serve demo builder isn't switched on
-        yet. Right now you email me and I do it with you — same price, same result, just by hand
-        while I finish the automatic version. I'd rather say that than have you click a button that
-        doesn't work.</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__line hero__line--1"><span class="hero__word">Tell me</span></span>
+        <span class="hero__line hero__line--2"><span class="hero__word">about</span></span>
+        <span class="hero__line hero__line--3"><span class="hero__word">your</span></span>
+        <span class="hero__line hero__line--4"><span class="hero__word"><span class="zero__lit">club.</span></span></span>
+      </h1>
+
+      <div class="hero__aside">
+        <p class="hero__lede">Two ways in. Send me your current site and I’ll tell you what’s wrong with it — <strong>free</strong>. Or answer <strong>ten questions</strong> and I’ll build a demo of your new site from them.</p>
+        <div class="hero__ctas" data-hero-ctas>
+          <a class="btn btn--accent" href="#check">Get my site checked <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          <a class="btn btn--ghost" href="#demo">Answer the ten questions</a>
+        </div>
+        <div class="check-card">
+          <p class="check-card__label mono"><span class="ping" aria-hidden="true"></span>How this page works</p>
+          <ol class="check-card__list">
+            <li><span class="mono" aria-hidden="true">01</span>What you type is saved in this browser</li>
+            <li><span class="mono" aria-hidden="true">02</span>Nothing is sent until you send it</li>
+            <li><span class="mono" aria-hidden="true">03</span>It goes as an email, from you to me</li>
+            <li><span class="mono" aria-hidden="true">04</span>Nothing is charged on this page</li>
+          </ol>
+          <p class="check-card__foot mono">No account · no payment · no tracking</p>
+          <span class="check-card__scan" aria-hidden="true"></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="send">
+  <!-- ═══════════ TAPES ═══════════ -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--back surface-chalk"><div class="tape__lean"><div class="tape__track">
+      <span>Free site check</span><i></i><span>Ten questions</span><i></i><span>Saved as you type</span><i></i><span>Nothing charged here</span><i></i><span>St. Louis</span><i></i><span>Free site check</span><i></i><span>Ten questions</span><i></i><span>Saved as you type</span><i></i><span>Nothing charged here</span><i></i><span>St. Louis</span><i></i>
+      <span>Free site check</span><i></i><span>Ten questions</span><i></i><span>Saved as you type</span><i></i><span>Nothing charged here</span><i></i><span>St. Louis</span><i></i><span>Free site check</span><i></i><span>Ten questions</span><i></i><span>Saved as you type</span><i></i><span>Nothing charged here</span><i></i><span>St. Louis</span><i></i>
+    </div></div></div>
+    <div class="tape tape--front surface-accent"><div class="tape__lean"><div class="tape__track">
+      <span>Your club</span><i></i><span>Your style</span><i></i><span>Your colors</span><i></i><span>Your domain</span><i></i><span>You own it</span><i></i><span>Your club</span><i></i><span>Your style</span><i></i><span>Your colors</span><i></i><span>Your domain</span><i></i><span>You own it</span><i></i>
+      <span>Your club</span><i></i><span>Your style</span><i></i><span>Your colors</span><i></i><span>Your domain</span><i></i><span>You own it</span><i></i><span>Your club</span><i></i><span>Your style</span><i></i><span>Your colors</span><i></i><span>Your domain</span><i></i><span>You own it</span><i></i>
+    </div></div></div>
+  </div>
+
+  <!-- ═══════════ 01 · FREE SITE CHECK ═══════════ -->
+  <section class="st-check surface-ink" id="check" aria-labelledby="check-title">
     <div class="wrap">
-      <p class="eyebrow">The form</p>
-      <h2>Send a note</h2>
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>01</b> Free · no obligation</p>
+          <h2 class="sec-title" id="check-title" data-reveal>Free<br><span class="hl">site check.</span></h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:1">Four fields. I look at your current site the way a parent would, and email you what’s wrong with it — the same check I ran on 35 St.&nbsp;Louis club sites. Useful whether or not you ever hire me.</p>
+      </header>
+
+      <div class="st-check__grid">
+        <form class="st-form" id="check-form" data-check-form action="mailto:connect@webforgecreate.org" method="post" enctype="text/plain" novalidate data-reveal>
+          <div class="st-form__row">
+            <div class="st-field">
+              <label class="st-field__label" for="check-name">Your name</label>
+              <div class="st-field__ctl"><input class="st-field__input" id="check-name" name="name" type="text" autocomplete="name" required data-contact="name" data-check="name"></div>
+              <p class="st-field__err" id="check-name-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+            </div>
+            <div class="st-field">
+              <label class="st-field__label" for="check-org">Club, facility or studio</label>
+              <div class="st-field__ctl"><input class="st-field__input" id="check-org" name="organization" type="text" autocomplete="organization" required data-contact="org" data-check="org"></div>
+              <p class="st-field__err" id="check-org-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+            </div>
+          </div>
+          <div class="st-field">
+            <label class="st-field__label" for="check-email">Your email</label>
+            <div class="st-field__ctl"><input class="st-field__input" id="check-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocapitalize="off" required data-contact="email" data-check="email"></div>
+            <p class="st-field__err" id="check-email-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+          </div>
+          <div class="st-field">
+            <label class="st-field__label" for="check-site">Your current site <span>— just the address</span></label>
+            <div class="st-field__ctl"><input class="st-field__input" id="check-site" name="current-site" type="text" inputmode="url" autocomplete="url" spellcheck="false" autocapitalize="off" placeholder="yourclub.org" required data-site data-check="site"></div>
+            <p class="st-field__err" id="check-site-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+          </div>
+          <div class="st-form__actions">
+            <button class="btn btn--accent btn--lg" type="submit">Get my site checked <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></button>
+          </div>
+          <p class="st-fine">This opens an email to me with your details filled in — you press send. <strong>Nothing is charged.</strong> I use what you send only to reply to you; I don’t sell it or share it.</p>
+
+          <div class="st-compose" data-compose hidden>
+            <p class="st-compose__label mono"><span class="ping" aria-hidden="true"></span>Ready to send</p>
+            <div class="st-compose__meta">
+              <p><span class="mono">To</span> <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+              <p><span class="mono">Subject</span> <span data-compose-subject></span></p>
+            </div>
+            <label class="sr-only" for="check-out">Your request, as plain text</label>
+            <textarea class="st-compose__text" id="check-out" rows="9" readonly data-compose-text></textarea>
+            <div class="st-compose__actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-copy>Copy it</button>
+              <p class="st-compose__alt">No email app? Copy it and send it to <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a> from any email account.</p>
+            </div>
+            <p class="st-compose__status" role="status" data-compose-status></p>
+          </div>
+        </form>
+
+        <div class="check-card" data-reveal style="--i:1">
+          <p class="check-card__label mono"><span class="ping" aria-hidden="true"></span>What the free check looks at</p>
+          <ol class="check-card__list">
+            <li><span class="mono" aria-hidden="true">01</span>Does your domain actually load?</li>
+            <li><span class="mono" aria-hidden="true">02</span>How does it behave on a phone?</li>
+            <li><span class="mono" aria-hidden="true">03</span>Is anything years out of date?</li>
+            <li><span class="mono" aria-hidden="true">04</span>What does a parent see first?</li>
+          </ol>
+          <p class="check-card__foot mono">Free · no obligation · the same check I ran on all 35</p>
+          <span class="check-card__scan" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 · THE DEMO REQUEST — the platform's ten intake questions ═══════════ -->
+  <section class="st-intake surface-chalk" id="demo" aria-labelledby="demo-title">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>02</b> The demo request</p>
+          <h2 class="sec-title" id="demo-title" data-reveal>Ten questions.<br>One demo.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:1">These are the same ten questions the demo builder will ask. Answer them here, one at a time, and I build a view-only draft of your site from them — your programs, your words, in the style you pick. About ten minutes.</p>
+      </header>
+
+      <div class="heads-up" role="note">
+        <p class="heads-up__stamp mono">Straight about one thing</p>
+        <p class="heads-up__text">The self-serve demo builder <strong>isn’t switched on yet</strong>. Right now I build your demo by hand from these answers — same $19.99 price. <strong>Nothing is charged on this page.</strong> Sending your answers is just an email, and I reply before anything is paid.</p>
+      </div>
+
       <noscript>
-        <div class="note">
-          <p>This form needs JavaScript to open your email app. It's off, so please
-          <a href="mailto:connect@webforgecreate.org">email me directly</a> instead — same result.</p>
+        <div class="heads-up st-noscript" role="note">
+          <p class="heads-up__stamp mono">JavaScript is off</p>
+          <p class="heads-up__text">This form needs JavaScript to turn your answers into an email. Email me directly instead: <a href="mailto:connect@webforgecreate.org?subject=Demo%20request">connect@webforgecreate.org</a> — the ten questions are all listed below, so you can answer them right in your email.</p>
         </div>
       </noscript>
-      <form id="inquiry" action="mailto:connect@webforgecreate.org" method="post" enctype="text/plain">
-        <div class="field">
-          <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required>
+
+      <form class="st-app" id="demo-form" data-intake action="mailto:connect@webforgecreate.org" method="post" enctype="text/plain" novalidate>
+
+        <!-- Progress rail (built by start.js; hidden without JavaScript) -->
+        <div class="st-rail" data-rail hidden>
+          <div class="st-status">
+            <p class="st-count"><span class="st-count__num" data-count>00</span><span class="st-count__of mono">of 10 answered</span></p>
+            <p class="st-saved mono" data-saved>Saved in this browser as you type</p>
+          </div>
+          <div class="st-bar" aria-hidden="true"><span data-fill></span></div>
+          <ol class="st-steps" aria-label="Jump to a step" data-steps></ol>
+          <button class="st-clear mono" type="button" data-clear>Clear my answers</button>
         </div>
-        <div class="field">
-          <label for="org">Club, facility or studio</label>
-          <input id="org" name="organization" type="text" autocomplete="organization" required>
+
+        <div class="st-stage" data-stage>
+
+          <!-- 00 · CONTACT -->
+          <div class="st-q" data-step data-no="00" data-name="Who’s asking" role="group" aria-labelledby="qt-0">
+            <p class="st-q__kicker mono">First · so I can reply</p>
+            <h3 class="st-q__title" id="qt-0"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">00</span></span><span class="st-q__name">Who’s asking?</span></h3>
+            <p class="st-q__prompt">Your name, your club and an email. That’s all I need to reply.</p>
+            <div class="st-form__row">
+              <div class="st-field">
+                <label class="st-field__label" for="demo-name">Your name</label>
+                <div class="st-field__ctl"><input class="st-field__input" id="demo-name" name="name" type="text" autocomplete="name" required data-contact="name" data-check="name"></div>
+                <p class="st-field__err" id="demo-name-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+              </div>
+              <div class="st-field">
+                <label class="st-field__label" for="demo-org">Club, facility or studio</label>
+                <div class="st-field__ctl"><input class="st-field__input" id="demo-org" name="organization" type="text" autocomplete="organization" required data-contact="org" data-check="org"></div>
+                <p class="st-field__err" id="demo-org-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+              </div>
+            </div>
+            <div class="st-field">
+              <label class="st-field__label" for="demo-email">Your email</label>
+              <div class="st-field__ctl"><input class="st-field__input" id="demo-email" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocapitalize="off" required data-contact="email" data-check="email"></div>
+              <p class="st-field__err" id="demo-email-err" hidden><span aria-hidden="true">!</span><span class="st-field__err-text"></span></p>
+            </div>
+            <p class="st-fine" data-js-note hidden>Saved in this browser as you type, so a refresh won’t lose anything. Nothing reaches me until you send the email yourself.</p>
+          </div>
+
+          <!-- 01 · business-snapshot -->
+          <div class="st-q" data-step data-qid="business-snapshot" data-min="10" data-no="01" data-name="Your starting point" role="group" aria-labelledby="qt-1">
+            <p class="st-q__kicker mono">Question 01 of 10</p>
+            <h3 class="st-q__title" id="qt-1"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">01</span></span><span class="st-q__name">Your starting point</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-business-snapshot">What should I call your business or idea, and where are you in the journey?</label>
+              <p class="st-field__hint" id="qh-business-snapshot">A working name is fine. Tell me whether you’re running now, starting from an idea, or upgrading a club, facility or studio that already exists.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-business-snapshot" name="business-snapshot" rows="5" maxlength="1600" aria-describedby="qh-business-snapshot" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-1">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-1"><button class="swatch" type="button" data-chip>Operating now</button><button class="swatch" type="button" data-chip>Starting from an idea</button><button class="swatch" type="button" data-chip>Upgrading an existing club</button></div></div>
+            </div>
+          </div>
+
+          <!-- 02 · offer-and-market -->
+          <div class="st-q" data-step data-qid="offer-and-market" data-min="20" data-no="02" data-name="What you do" role="group" aria-labelledby="qt-2">
+            <p class="st-q__kicker mono">Question 02 of 10</p>
+            <h3 class="st-q__title" id="qt-2"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">02</span></span><span class="st-q__name">What you do</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-offer-and-market">What do you sell or provide, and where do you serve customers?</label>
+              <p class="st-field__hint" id="qh-offer-and-market">Say it the way you’d tell a parent: the sports or classes, the ages, and the part of town — or the whole metro — you serve. Tell me if people sign up online.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-offer-and-market" name="offer-and-market" rows="5" maxlength="1600" aria-describedby="qh-offer-and-market" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-2">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-2"><button class="swatch" type="button" data-chip>Youth club or team</button><button class="swatch" type="button" data-chip>Training facility</button><button class="swatch" type="button" data-chip>Gym or studio</button></div></div>
+            </div>
+          </div>
+
+          <!-- 03 · ideal-customer -->
+          <div class="st-q" data-step data-qid="ideal-customer" data-min="20" data-no="03" data-name="Who the site is for" role="group" aria-labelledby="qt-3">
+            <p class="st-q__kicker mono">Question 03 of 10</p>
+            <h3 class="st-q__title" id="qt-3"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">03</span></span><span class="st-q__name">Who the site is for</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-ideal-customer">Who is the customer you most want this website to reach?</label>
+              <p class="st-field__hint" id="qh-ideal-customer">Tell me who matters most — new families, current members, adult athletes, competitive players — and what they’re trying to figure out when they land on your site.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-ideal-customer" name="ideal-customer" rows="5" maxlength="1600" aria-describedby="qh-ideal-customer" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-3">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-3"><button class="swatch" type="button" data-chip>Parents of new athletes</button><button class="swatch" type="button" data-chip>Current families</button><button class="swatch" type="button" data-chip>Adult athletes</button></div></div>
+            </div>
+          </div>
+
+          <!-- 04 · primary-goal -->
+          <div class="st-q" data-step data-qid="primary-goal" data-min="20" data-no="04" data-name="The website’s main job" role="group" aria-labelledby="qt-4">
+            <p class="st-q__kicker mono">Question 04 of 10</p>
+            <h3 class="st-q__title" id="qt-4"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">04</span></span><span class="st-q__name">The website’s main job</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-primary-goal">What is the single most important result this website should create?</label>
+              <p class="st-field__hint" id="qh-primary-goal">Pick one result, then tell me the exact thing you want a visitor to do — book a trial, register for a season, call, or email.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-primary-goal" name="primary-goal" rows="5" maxlength="1600" aria-describedby="qh-primary-goal" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-4">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-4"><button class="swatch" type="button" data-chip>Book a free trial</button><button class="swatch" type="button" data-chip>Register for the season</button><button class="swatch" type="button" data-chip>Call or email</button></div></div>
+            </div>
+          </div>
+
+          <!-- 05 · priority-offer -->
+          <div class="st-q" data-step data-qid="priority-offer" data-min="20" data-no="05" data-name="What to emphasize" role="group" aria-labelledby="qt-5">
+            <p class="st-q__kicker mono">Question 05 of 10</p>
+            <h3 class="st-q__title" id="qt-5"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">05</span></span><span class="st-q__name">What to emphasize</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-priority-offer">Which products, services, or ideas should receive the most attention?</label>
+              <p class="st-field__hint" id="qh-priority-offer">List the most important programs first — tryouts, camps, clinics, private lessons, memberships — and tell me why they matter.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-priority-offer" name="priority-offer" rows="5" maxlength="1600" aria-describedby="qh-priority-offer" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-5">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-5"><button class="swatch" type="button" data-chip>Tryouts</button><button class="swatch" type="button" data-chip>Camps and clinics</button><button class="swatch" type="button" data-chip>Private lessons</button></div></div>
+            </div>
+          </div>
+
+          <!-- 06 · pages-and-features -->
+          <div class="st-q" data-step data-qid="pages-and-features" data-min="20" data-no="06" data-name="Pages and features" role="group" aria-labelledby="qt-6">
+            <p class="st-q__kicker mono">Question 06 of 10</p>
+            <h3 class="st-q__title" id="qt-6"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">06</span></span><span class="st-q__name">Pages and features</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-pages-and-features">What pages, features, or customer actions must the website include?</label>
+              <p class="st-field__hint" id="qh-pages-and-features">For example: Home, Programs, Schedule, Coaches, About, FAQ, a contact form, or a link to the sign-up system you already use. If something’s outside what I build, I’ll tell you up front.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-pages-and-features" name="pages-and-features" rows="5" maxlength="1600" aria-describedby="qh-pages-and-features" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-6">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-6"><button class="swatch" type="button" data-chip>Schedule page</button><button class="swatch" type="button" data-chip>Coaches page</button><button class="swatch" type="button" data-chip>FAQ</button></div></div>
+            </div>
+          </div>
+
+          <!-- 07 · current-setup -->
+          <div class="st-q" data-step data-qid="current-setup" data-min="5" data-no="07" data-name="What already exists" role="group" aria-labelledby="qt-7">
+            <p class="st-q__kicker mono">Question 07 of 10</p>
+            <h3 class="st-q__title" id="qt-7"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">07</span></span><span class="st-q__name">What already exists</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-current-setup">What website, domain, hosting, or social presence already exists?</label>
+              <p class="st-field__hint" id="qh-current-setup">Public links only — your current site, your domain name, your Instagram or Facebook. I never need passwords, transfer codes or logins, so please don’t put them here.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-current-setup" name="current-setup" rows="5" maxlength="1600" aria-describedby="qh-current-setup" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-7">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-7"><button class="swatch" type="button" data-chip>Nothing yet</button><button class="swatch" type="button" data-chip>Existing website</button><button class="swatch" type="button" data-chip>Social pages only</button></div></div>
+            </div>
+          </div>
+
+          <!-- 08 · available-materials -->
+          <div class="st-q" data-step data-qid="available-materials" data-min="10" data-no="08" data-name="Content and brand materials" role="group" aria-labelledby="qt-8">
+            <p class="st-q__kicker mono">Question 08 of 10</p>
+            <h3 class="st-q__title" id="qt-8"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">08</span></span><span class="st-q__name">Content and brand materials</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-available-materials">What copy, photos, logo, reviews, or other materials do you already have?</label>
+              <p class="st-field__hint" id="qh-available-materials">Tell me what’s ready, what needs work, and what you’d want help with — logo files, team photos, program write-ups, schedules.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-available-materials" name="available-materials" rows="5" maxlength="1600" aria-describedby="qh-available-materials" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-8">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-8"><button class="swatch" type="button" data-chip>Logo and photos ready</button><button class="swatch" type="button" data-chip>Some materials</button><button class="swatch" type="button" data-chip>Starting fresh</button></div></div>
+            </div>
+          </div>
+
+          <!-- 09 · visual-direction (+ the style picker) -->
+          <div class="st-q" data-step data-qid="visual-direction" data-min="20" data-no="09" data-name="Look and feeling" role="group" aria-labelledby="qt-9">
+            <p class="st-q__kicker mono">Question 09 of 10</p>
+            <h3 class="st-q__title" id="qt-9"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">09</span></span><span class="st-q__name">Look and feeling</span></h3>
+
+            <fieldset class="st-picks" data-picks>
+              <legend class="st-field__label st-picks__legend">Pick a starting style <span>— each one opens a live demo in a new tab</span></legend>
+              <div class="st-picks__grid">
+                <div class="st-pick" data-style="kinetic">
+                  <input class="st-pick__input sr-only" type="radio" name="style" id="pick-kinetic" value="Kinetic">
+                  <label class="st-pick__label" for="pick-kinetic"><span class="st-pick__name">Kinetic</span><span class="st-pick__line">Athletic campaign energy.</span><span class="st-pick__tick mono" aria-hidden="true">Picked</span></label>
+                  <div class="mini mini--kinetic" aria-hidden="true">
+                    <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+                    <div class="mini__stage">
+                      <span class="mk-lines"></span>
+                      <span class="mk-run mk-run--1"></span><span class="mk-run mk-run--2"></span>
+                      <p class="mk-meta">Valley Park / Ages 8–18</p>
+                      <p class="mk-head"><span class="mk-hollow">Faster.</span><span class="mk-solid">Stronger.</span><span class="mk-lit">Braver.</span></p>
+                      <span class="mk-btn">Book a free trial</span>
+                      <div class="mk-tape mk-tape--back"><div class="mk-track"><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span></div></div>
+                      <div class="mk-tape"><div class="mk-track"><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span></div></div>
+                    </div>
+                  </div>
+                  <a class="st-pick__demo mono" href="demos/kinetic/index.html" target="_blank" rel="noopener">Live demo<span class="sr-only"> of the Kinetic style, for a made-up club (opens in a new tab)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+                </div>
+
+                <div class="st-pick" data-style="cinematic">
+                  <input class="st-pick__input sr-only" type="radio" name="style" id="pick-cinematic" value="Cinematic">
+                  <label class="st-pick__label" for="pick-cinematic"><span class="st-pick__name">Cinematic</span><span class="st-pick__line">Dark and filmic.</span><span class="st-pick__tick mono" aria-hidden="true">Picked</span></label>
+                  <div class="mini mini--cinematic" aria-hidden="true">
+                    <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+                    <div class="mini__stage">
+                      <span class="mc-light"></span>
+                      <span class="mc-flare"></span>
+                      <span class="mc-dust"></span>
+                      <p class="mc-tc"><b></b>TC 00:00:12:04 · SC 01</p>
+                      <p class="mc-title"><em>Copperline</em><span>Athletics · a training film</span></p>
+                      <span class="mc-btn">Book a free trial</span>
+                      <span class="mc-bars"></span>
+                    </div>
+                  </div>
+                  <a class="st-pick__demo mono" href="demos/cinematic/index.html" target="_blank" rel="noopener">Live demo<span class="sr-only"> of the Cinematic style, for a made-up club (opens in a new tab)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+                </div>
+
+                <div class="st-pick" data-style="brightclub">
+                  <input class="st-pick__input sr-only" type="radio" name="style" id="pick-brightclub" value="Bright Club">
+                  <label class="st-pick__label" for="pick-brightclub"><span class="st-pick__name">Bright Club</span><span class="st-pick__line">Warm, friendly, colorful.</span><span class="st-pick__tick mono" aria-hidden="true">Picked</span></label>
+                  <div class="mini mini--bright" aria-hidden="true">
+                    <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+                    <div class="mini__stage">
+                      <svg class="mb-wave" viewBox="0 0 160 100" preserveAspectRatio="none"><path d="M-10 78C30 40 64 96 104 60s44-30 66-34"/></svg>
+                      <p class="mb-head">Where kids get good at <span class="mb-sticker">hard things.</span></p>
+                      <span class="mb-btn">Book a free trial →</span>
+                      <span class="mb-court"></span>
+                      <span class="mb-ticket"><b>Free trial pass</b><span>Admit one athlete</span><i></i></span>
+                      <span class="mb-burst"><b>8–18</b></span>
+                    </div>
+                  </div>
+                  <a class="st-pick__demo mono" href="demos/brightclub/index.html" target="_blank" rel="noopener">Live demo<span class="sr-only"> of the Bright Club style, for a made-up club (opens in a new tab)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+                </div>
+
+                <div class="st-pick" data-style="precision">
+                  <input class="st-pick__input sr-only" type="radio" name="style" id="pick-precision" value="Precision">
+                  <label class="st-pick__label" for="pick-precision"><span class="st-pick__name">Precision</span><span class="st-pick__line">Sleek and minimal.</span><span class="st-pick__tick mono" aria-hidden="true">Picked</span></label>
+                  <div class="mini mini--precision" aria-hidden="true">
+                    <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+                    <div class="mini__stage">
+                      <span class="mp-grid"></span>
+                      <p class="mp-meta">Youth training · ages 8–18</p>
+                      <p class="mp-head">Get better on purpose<b>.</b></p>
+                      <span class="mp-btn">Book a free trial</span>
+                      <svg class="mp-dial" viewBox="0 0 120 120">
+                        <circle class="mp-ticks" cx="60" cy="60" r="56" pathLength="120"/>
+                        <circle class="mp-track" cx="60" cy="60" r="46"/>
+                        <circle class="mp-arc mp-arc--ink" cx="60" cy="60" r="46" pathLength="100"/>
+                        <circle class="mp-arc mp-arc--hot" cx="60" cy="60" r="46" pathLength="100"/>
+                        <circle class="mp-face" cx="60" cy="60" r="34"/>
+                        <text class="mp-t1" x="60" y="54">UP NEXT</text>
+                        <text class="mp-t2" x="60" y="66">Speed</text>
+                        <text class="mp-t3" x="60" y="76">4:30 PM</text>
+                        <g class="mp-needle"><path d="M60 4v20"/><circle cx="60" cy="8" r="2.5"/></g>
+                      </svg>
+                    </div>
+                  </div>
+                  <a class="st-pick__demo mono" href="demos/precision/index.html" target="_blank" rel="noopener">Live demo<span class="sr-only"> of the Precision style, for a made-up club (opens in a new tab)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+                </div>
+
+                <div class="st-pick st-pick--any">
+                  <input class="st-pick__input sr-only" type="radio" name="style" id="pick-any" value="Not sure — you pick">
+                  <label class="st-pick__label" for="pick-any"><span class="st-pick__q" aria-hidden="true">?</span><span class="st-pick__name">Not sure — you pick</span><span class="st-pick__line">Tell me about the club below and I’ll choose the style that fits it.</span><span class="st-pick__tick mono" aria-hidden="true">Picked</span></label>
+                </div>
+              </div>
+              <p class="demo-note mono"><span class="demo-note__flag">Demo club</span><span>The live demos are for <b>Copperline Athletics</b>, a made-up club. They show the styles. They are not client work.</span></p>
+            </fieldset>
+
+            <div class="st-color" data-color>
+              <label class="st-field__label" for="club-color">Your main club color <span>— optional</span></label>
+              <input class="st-color__input" id="club-color" name="club-color" type="color" value="#2a4bd7" aria-describedby="club-color-value">
+              <p class="st-color__value mono" id="club-color-value" data-color-value>Not set — the previews show each style’s own colors</p>
+              <button class="st-clear mono" type="button" data-color-reset hidden>Use house colors</button>
+            </div>
+
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-visual-direction">How should the website look and feel, and what should I avoid?</label>
+              <p class="st-field__hint" id="qh-visual-direction">Pick a starting style above, then tell me in words: your colors, the feel you’re after, public links to sites you like, and anything you can’t stand.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-visual-direction" name="visual-direction" rows="5" maxlength="1600" aria-describedby="qh-visual-direction" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-9">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-9"><button class="swatch" type="button" data-chip>Bold and confident</button><button class="swatch" type="button" data-chip>Warm and friendly</button><button class="swatch" type="button" data-chip>Clean and minimal</button></div></div>
+            </div>
+          </div>
+
+          <!-- 10 · timing-and-constraints -->
+          <div class="st-q" data-step data-qid="timing-and-constraints" data-min="10" data-no="10" data-name="Timing and requirements" role="group" aria-labelledby="qt-10">
+            <p class="st-q__kicker mono">Question 10 of 10</p>
+            <h3 class="st-q__title" id="qt-10"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">10</span></span><span class="st-q__name">Timing and requirements</span></h3>
+            <div class="st-field">
+              <label class="st-q__prompt" for="q-timing-and-constraints">When would you like to launch, and are there legal, accessibility, or industry requirements I should know?</label>
+              <p class="st-field__hint" id="qh-timing-and-constraints">A date you ask for isn’t a guaranteed delivery date — I confirm timing in the written scope. Tell me about season starts, tryouts or events you’re working toward.</p>
+              <div class="st-field__ctl"><textarea class="st-field__input" id="q-timing-and-constraints" name="timing-and-constraints" rows="5" maxlength="1600" aria-describedby="qh-timing-and-constraints" data-answer></textarea></div>
+              <div class="st-chips"><p class="st-chips__label mono" id="qc-10">Quick start — tap to add</p><div class="swatches" role="group" aria-labelledby="qc-10"><button class="swatch" type="button" data-chip>No fixed date</button><button class="swatch" type="button" data-chip>Before the next season</button><button class="swatch" type="button" data-chip>Event or opening date</button></div></div>
+            </div>
+          </div>
+
+          <!-- GO · review and send (JavaScript only) -->
+          <div class="st-q st-q--send" data-step data-no="GO" data-name="Review and send" role="group" aria-labelledby="qt-11" hidden>
+            <p class="st-q__kicker mono">Last step</p>
+            <h3 class="st-q__title" id="qt-11"><span class="st-q__mask" aria-hidden="true"><span class="st-q__no">GO</span></span><span class="st-q__name">Review and send</span></h3>
+            <div class="st-review">
+              <p class="st-review__sum" data-review-sum></p>
+              <ul class="swatches st-review__todo" data-review-todo></ul>
+              <div class="st-review__warn" data-review-warn hidden>
+                <p class="st-field__err"><span aria-hidden="true">!</span><span>I need your name, club and a working email to reply.</span></p>
+                <button class="btn btn--ghost btn--sm" type="button" data-goto="0">Add them</button>
+              </div>
+            </div>
+
+            <div class="st-compose st-compose--demo" data-compose>
+              <p class="st-compose__label mono"><span class="ping" aria-hidden="true"></span>Your request, ready to send</p>
+              <div class="st-compose__meta">
+                <p><span class="mono">To</span> <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+                <p><span class="mono">Subject</span> <span data-compose-subject></span></p>
+              </div>
+              <label class="sr-only" for="demo-out">Your answers, as plain text</label>
+              <textarea class="st-compose__text" id="demo-out" rows="12" readonly data-compose-text></textarea>
+              <div class="st-compose__actions">
+                <button class="btn btn--accent btn--lg" type="submit" data-send>Open it in my email <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></button>
+                <button class="btn btn--ghost" type="button" data-copy>Copy my answers</button>
+              </div>
+              <p class="st-compose__status" role="status" data-compose-status></p>
+              <p class="st-compose__alt">No email app? Copy your answers and send them to <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a> from any email account.</p>
+            </div>
+            <p class="st-fine"><strong>Nothing is charged on this page.</strong> Your email app opens with everything filled in, and nothing is sent until you press send there.</p>
+          </div>
+
+          <div class="st-nav" data-nav hidden>
+            <button class="btn btn--ghost" type="button" data-back>Back</button>
+            <span class="st-keys mono" aria-hidden="true">Ctrl + Enter = next</span>
+            <button class="btn btn--accent" type="button" data-next><span data-next-label>Start the questions</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></button>
+          </div>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="message">What's going on with your site?</label>
-          <textarea id="message" name="message" placeholder="Even one line is fine. &quot;It's old and nobody has touched it in three years&quot; tells me plenty."></textarea>
-        </div>
-        <div class="actions">
-          <button class="btn btn-primary" type="submit">Send it</button>
-        </div>
-        <p class="small">
-          I collect your name, organization and email only so I can reply to you. I don't sell it,
-          share it, or add you to a mailing list. If you'd rather not use a form, just
-          <a href="mailto:connect@webforgecreate.org">email me</a> directly.
-        </p>
       </form>
     </div>
   </section>
 
-  <section class="band">
+  <!-- ═══════════ 03 · WHAT HAPPENS NEXT ═══════════ -->
+  <section class="how surface-accent st-next" id="next" aria-labelledby="next-title">
     <div class="wrap">
-      <p class="eyebrow">What happens next</p>
-      <h2>Three steps, and no sales sequence.</h2>
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>03</b> What happens next</p>
+          <h2 class="sec-title" id="next-title" data-reveal>No sales<br>sequence.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:1">You hear from me, not from an autoresponder. And if you don’t reply, I’m not going to chase you with five follow-ups.</p>
+      </header>
+
       <ol class="steps">
-        <li>
-          <h3>I reply, usually same day</h3>
-          <p>With what I found on your current site. Specific things, not a sales pitch.</p>
+        <li class="step" data-reveal style="--i:0">
+          <span class="step__no" aria-hidden="true">01</span>
+          <p class="step__tag mono">From your email</p>
+          <h3 class="step__title">You send it</h3>
+          <p class="step__text">Nothing leaves this page until you press send in your own email.</p>
         </li>
-        <li>
-          <h3>Ten minutes on the phone, if you want it</h3>
-          <p>You decide if it's worth going further. If I don't think I'm the right fit for what you
-          need, I'll tell you that instead.</p>
+        <li class="step" data-reveal style="--i:1">
+          <span class="step__no" aria-hidden="true">02</span>
+          <p class="step__tag mono">Target · within a day</p>
+          <h3 class="step__title">I reply</h3>
+          <p class="step__text">With what I found on your site, or questions about your answers. Specific things, not a pitch.</p>
         </li>
-        <li>
-          <h3>If it's a fit, you get it in writing</h3>
-          <p>Scope, price, timeline. You read it before you pay anything.</p>
+        <li class="step" data-reveal style="--i:2">
+          <span class="step__no" aria-hidden="true">03</span>
+          <p class="step__tag mono">Only if you want it</p>
+          <h3 class="step__title">A short call</h3>
+          <p class="step__text">Ten minutes on the phone, if it helps. If I’m not the right fit for what you need, I’ll tell you.</p>
+        </li>
+        <li class="step" data-reveal style="--i:3">
+          <span class="step__no" aria-hidden="true">04</span>
+          <p class="step__tag mono">Before you pay</p>
+          <h3 class="step__title">It’s in writing</h3>
+          <p class="step__text">For the $19.99 demo or the $750 build, you read exactly what you’re getting before you pay anything.</p>
         </li>
       </ol>
-      <div class="note">
-        <p><strong>No sales sequence.</strong> If you don't reply, I'm not going to chase you with
-        five follow-ups. Reach out again whenever it makes sense.</p>
-      </div>
-    </div>
-  </section>
 
-  <section class="band-signal">
-    <div class="wrap">
-      <p class="eyebrow">Free, no obligation</p>
-      <h2>I'll look at your site and tell you what I'd change.</h2>
-      <p class="lede">
-        How it loads, how it behaves on a phone, whether your domain is actually resolving, what a
-        parent sees first.
-      </p>
-      <p><strong>Free, and you're not obligated to anything.</strong></p>
-      <div class="actions">
-        <a class="btn btn-primary" href="mailto:connect@webforgecreate.org">Send me your site</a>
+      <div class="heads-up" role="note">
+        <p class="heads-up__stamp mono">Your details</p>
+        <p class="heads-up__text">I collect your name, organization, email and whatever you write here — and use it only to reply to you. I don’t sell it, share it, or add you to a mailing list. Until you send it, it stays in this browser only — “Clear my answers” in the form wipes it.</p>
       </div>
+
+      <p class="st-mail">Rather just email? <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
     </div>
   </section>
 
 </main>
 
-<script>
-/* Compose a mailto from the form. No data leaves the browser until the visitor
-   sends the email themselves from their own mail app. */
-(function () {
-  var form = document.getElementById('inquiry');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var get = function (id) { return (document.getElementById(id).value || '').trim(); };
-    var subject = 'Website inquiry — ' + (get('org') || get('name') || 'WebForge');
-    var body =
-      'Name: ' + get('name') + '\n' +
-      'Organization: ' + get('org') + '\n' +
-      'Email: ' + get('email') + '\n\n' +
-      get('message');
-    window.location.href = 'mailto:connect@webforgecreate.org'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
-  });
-})();
-</script>
-
-<footer class="site">
-  <div class="wrap rows">
-    <div>
-      <p class="mark">Web<span>Forge</span></p>
-      <p>St. Louis, Missouri</p>
-      <p><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE FOOTER · copy this block verbatim into every page. No changes.
+     The two honesty lines (AI use, no tracking) must stay word for word.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer surface-deep">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+          <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+        </a>
+        <p class="footer__line">Websites for youth sports clubs, training facilities and studios. One person, in St.&nbsp;Louis, Missouri.</p>
+        <p class="footer__mail"><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="what-you-get.html">What you get</a>
+        <a href="index.html#styles">Styles</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="start.html">Start</a>
+      </nav>
     </div>
-    <div>
-      <p>I use AI tools in my work. I'm responsible for reviewing and delivering everything I hand over.</p>
+    <p class="footer__word" aria-hidden="true">WebForge</p>
+  </div>
+  <div class="footer__meta">
+    <div class="wrap footer__meta-inner">
+      <p>I use AI tools in my work. I’m responsible for reviewing and delivering everything I hand over.</p>
       <p>No tracking, no cookies, no analytics on this site.</p>
+      <p class="mono">© 2026 WebForge · Gavin Reidel</p>
     </div>
   </div>
 </footer>
+<!-- ═══════════════════════════ END SITE FOOTER ═══════════════════════════ -->
 
 </body>
 </html>

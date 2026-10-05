@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="en" class="no-js" data-grade="tungsten">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Cinematic style demo · Copperline Athletics (fictional club) · WebForge</title>
+<meta name="description" content="Copperline Athletics is a year-round youth training facility in Maryland Heights, MO for athletes 8 to 18: youth wrestling, club volleyball, and speed and agility. First session free. Demo site for a fictional club.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#050506">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..800&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050506'/%3E%3Cpath d='M6 26C6 17 26 19 26 10' fill='none' stroke='%23f5b452' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='6' r='3' fill='%23f5b452'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#schedule">Skip to the schedule</a>
+<!-- WF-DEMO-RIBBON:START · added by WebForge when publishing the demo. Self-contained: it does not
+     use this style's CSS or JS, and it is not part of the style's design. It sits at the bottom, and on phones
+     it lifts itself above the style's own action bar so it never covers the "Book a free trial" button. -->
+<style>
+#wf-ribbon, #wf-ribbon p, #wf-ribbon a, #wf-ribbon b, #wf-ribbon span { all: revert; box-sizing: border-box; }
+#wf-ribbon {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147483000;
+  display: flex; align-items: center; justify-content: space-between; gap: 4px 14px;
+  margin: 0; padding: 4px max(14px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  background: rgba(10, 10, 11, 0.96); color: #F2F0E9; border-top: 2px solid #FF5B1F;
+  font: 600 12px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.01em; text-align: left; text-transform: none; font-style: normal;
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+}
+#wf-ribbon p { display: flex; align-items: center; gap: 9px; min-width: 0; margin: 0; font: inherit; color: inherit; }
+#wf-ribbon .wf-ribbon__mark { display: block; flex: none; width: 19px; height: 16px; max-width: none; overflow: visible; }
+#wf-ribbon b { font-weight: 800; color: #F2F0E9; }
+#wf-ribbon .wf-ribbon__dim { color: #B9B6AC; font-weight: 600; white-space: nowrap; }
+#wf-ribbon a {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 2px;
+  color: #F2F0E9; font: inherit; font-weight: 800; white-space: nowrap; cursor: pointer;
+  text-decoration: underline; text-decoration-color: #FF5B1F; text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+#wf-ribbon a:hover { color: #FF5B1F; }
+#wf-ribbon a:focus { outline: none; }
+#wf-ribbon a:focus-visible { outline: 2px solid #FF5B1F; outline-offset: 2px; color: #F2F0E9; }
+#wf-ribbon .wf-ribbon__arrow { font-weight: 800; }
+@media (max-width: 420px) { #wf-ribbon { font-size: 11.5px; gap: 4px 10px; padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); } #wf-ribbon p { gap: 7px; } }
+@media (max-width: 360px) { #wf-ribbon { font-size: 11px; } #wf-ribbon .wf-ribbon__mark { display: none; } }
+@media print { #wf-ribbon, #wf-ribbon-space { display: none; } }
+</style>
+<aside id="wf-ribbon" aria-label="About this page">
+  <p><svg class="wf-ribbon__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path d="M12 0h32L32 36H0z" fill="#FF5B1F"/><path d="M10 9l5 18 6-12 6 12 9-20" fill="none" stroke="#0A0A0B" stroke-width="3.6"/></svg><span><b>WebForge style demo:</b> Cinematic <span class="wf-ribbon__dim">· Fictional club</span></span></p>
+  <a href="../../index.html#styles"><span class="wf-ribbon__arrow" aria-hidden="true">←</span> Back to WebForge</a>
+</aside>
+<script>
+(function () {
+  'use strict';
+  var rib = document.getElementById('wf-ribbon');
+  if (!rib) return;
+  var BARS = '.actionbar';
+  var root = document.documentElement;
+  var bars = []; var space = null; var until = 0; var raf = 0; var lastLift = -1; var lastH = -1;
+  /* how far the style's own bottom bar reaches up into the viewport (0 if hidden) */
+  function reach() {
+    var vh = window.innerHeight; var out = 0;
+    for (var i = 0; i < bars.length; i++) {
+      var cs = window.getComputedStyle(bars[i]);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      var r = bars[i].getBoundingClientRect();
+      if (r.height > 0 && r.top < vh && r.bottom > vh - 48) out = Math.max(out, vh - r.top + (r.bottom < vh - 2 ? 6 : 0));
+    }
+    return Math.max(0, Math.round(out));
+  }
+  function apply() {
+    var l = bars.length ? reach() : 0;
+    if (l !== lastLift) { rib.style.transform = l ? 'translateY(' + (-l) + 'px)' : ''; lastLift = l; }
+    var h = rib.offsetHeight;
+    if (h !== lastH) {
+      lastH = h;
+      if (space) space.style.height = h + 'px';
+      root.style.scrollPaddingBottom = (h + 12) + 'px';
+    }
+  }
+  function tick() { apply(); raf = Date.now() < until ? window.requestAnimationFrame(tick) : 0; }
+  function burst(ms) { until = Math.max(until, Date.now() + ms); if (!raf) raf = window.requestAnimationFrame(tick); }
+  function init() {
+    space = document.getElementById('wf-ribbon-space');
+    if (space) {
+      var foot = document.querySelector('body > footer') || document.querySelector('footer:last-of-type');
+      var bg = foot ? window.getComputedStyle(foot).backgroundColor : '';
+      if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') space.style.backgroundColor = bg;
+    }
+    bars = BARS ? Array.prototype.slice.call(document.querySelectorAll(BARS)) : [];
+    if (bars.length && window.MutationObserver) {
+      var mo = new MutationObserver(function () { burst(900); });
+      bars.forEach(function (b) { mo.observe(b, { attributes: true, attributeFilter: ['class', 'style', 'hidden'] }); });
+    }
+    bars.forEach(function (b) { b.addEventListener('transitionrun', function () { burst(900); }); });
+    window.addEventListener('scroll', function () { burst(700); }, { passive: true });
+    window.addEventListener('resize', function () { burst(500); }, { passive: true });
+    window.addEventListener('load', function () { burst(1500); });
+    burst(1500);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- WF-DEMO-RIBBON:END -->
+
+<!-- Film grain: one fixed layer, decorative -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Timecode rail: wide screens only, decorative -->
+<div class="tc-rail" aria-hidden="true">
+  <span class="tc-rail__dot"></span>
+  <span class="tc-rail__tc" data-tc>TC 00:00:00:00</span>
+  <span class="tc-rail__sc" data-sc>SC 00 · Title</span>
+</div>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="#top">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path d="M4 27.5C4 17 27 19 27 9.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="27" cy="4.6" r="2.6" fill="currentColor"/>
+      </svg>
+      <span class="brand__word">Copperline <span class="brand__sub">Athletics</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <span class="nav__toggle-bars" aria-hidden="true"></span><span class="nav__toggle-label">Menu</span>
+      </button>
+      <ul class="nav__list" id="nav-list">
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#coaches">Coaches</a></li>
+        <li><a href="#facility">Facility</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li class="nav__cta-item"><a class="btn btn--primary" href="#book">Book a free trial</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn btn--primary btn--sm site-header__cta" href="#book">Book a free trial</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO / TITLE CARD ============================== -->
+<section class="hero" id="top" aria-labelledby="hero-title" data-scene="SC 00 · Title card">
+  <div class="hero__scene" aria-hidden="true">
+    <div class="hero__depth hero__depth--far" data-depth="0.6">
+      <div class="hero__beam"></div>
+      <div class="leak leak--hero-a"></div>
+      <div class="leak leak--hero-b"></div>
+    </div>
+
+    <div class="hero__depth hero__depth--mid" data-depth="1.2">
+      <!-- Layer 1: static halo, blurred once by CSS. Never animated inside, so it never repaints. -->
+      <svg class="hero__svg hero__svg--halo" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+        <defs>
+          <linearGradient id="trail-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1420" y2="0">
+            <stop offset="0" style="stop-color:var(--trail-tail)" stop-opacity="0"/>
+            <stop offset=".38" style="stop-color:var(--trail-tail)" stop-opacity=".5"/>
+            <stop offset=".74" style="stop-color:var(--trail-mid)" stop-opacity=".9"/>
+            <stop offset="1" style="stop-color:var(--trail-head)" stop-opacity="1"/>
+          </linearGradient>
+          <radialGradient id="head-glow">
+            <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+            <stop offset=".16" style="stop-color:var(--trail-head)" stop-opacity=".9"/>
+            <stop offset=".45" style="stop-color:var(--trail-mid)" stop-opacity=".22"/>
+            <stop offset="1" style="stop-color:var(--trail-mid)" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="flare-soft">
+            <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+            <stop offset=".25" style="stop-color:var(--flare)" stop-opacity=".1"/>
+            <stop offset="1" style="stop-color:var(--flare)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="flare-grad" gradientUnits="userSpaceOnUse" x1="500" y1="0" x2="2300" y2="0">
+            <stop offset="0" style="stop-color:var(--flare)" stop-opacity="0"/>
+            <stop offset=".5" stop-color="#fff" stop-opacity=".95"/>
+            <stop offset="1" style="stop-color:var(--flare)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M-120 830C380 830 820 800 1040 610C1230 445 1210 230 1400 130" fill="none" stroke="url(#trail-grad)" stroke-width="54" stroke-linecap="round" opacity=".55"/>
+        <path d="M-120 868C400 868 860 842 1088 640C1278 470 1262 262 1452 160" fill="none" stroke="url(#trail-grad)" stroke-width="30" stroke-linecap="round" opacity=".25"/>
+        <circle cx="1400" cy="130" r="150" style="fill:var(--trail-mid)" opacity=".35"/>
+      </svg>
+
+      <!-- Layer 2: the light painting itself. Draws on once at load, then static. -->
+      <svg class="hero__svg hero__svg--lanes" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+        <g fill="none" stroke="url(#trail-grad)" stroke-linecap="round">
+          <path class="lane lane--1" pathLength="1" d="M-120 830C380 830 820 800 1040 610C1230 445 1210 230 1400 130" stroke-width="3.4"/>
+          <path class="lane lane--2" pathLength="1" d="M-120 868C400 868 860 842 1088 640C1278 470 1262 262 1452 160" stroke-width="1.5" opacity=".6"/>
+          <path class="lane lane--3" pathLength="1" d="M-120 792C360 792 784 760 994 580C1180 420 1160 200 1350 100" stroke-width="1.1" opacity=".45"/>
+          <path class="lane lane--4" pathLength="1" d="M-120 906C420 906 900 884 1136 670C1326 496 1316 296 1504 192" stroke-width=".8" opacity=".3"/>
+          <path class="lane lane--5" pathLength="1" d="M-120 760C330 760 750 724 950 552C1132 396 1108 176 1300 72" stroke-width=".6" opacity=".22"/>
+        </g>
+        <circle class="trails__head" cx="1400" cy="130" r="80" fill="url(#head-glow)"/>
+        <circle class="trails__head trails__head--b" cx="1452" cy="160" r="34" fill="url(#head-glow)" opacity=".6"/>
+      </svg>
+
+      <!-- Layer 3: comets. The only thing that repaints every frame: three thin strokes, no filters. -->
+      <svg class="hero__svg hero__svg--comets" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+        <g fill="none" stroke-linecap="round">
+          <path class="comet comet--1" pathLength="1" d="M-120 830C380 830 820 800 1040 610C1230 445 1210 230 1400 130" stroke="#fff" stroke-width="3"/>
+          <path class="comet comet--2" pathLength="1" d="M-120 868C400 868 860 842 1088 640C1278 470 1262 262 1452 160" style="stroke:var(--trail-head)" stroke-width="2"/>
+          <path class="comet comet--3" pathLength="1" d="M-120 792C360 792 784 760 994 580C1180 420 1160 200 1350 100" style="stroke:var(--trail-mid)" stroke-width="1.6"/>
+        </g>
+      </svg>
+
+      <!-- Layer 4: anamorphic lens flare through the trail head. Breathes by opacity only. -->
+      <svg class="hero__svg hero__svg--flare" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" focusable="false">
+        <ellipse cx="1400" cy="130" rx="900" ry="46" fill="url(#flare-soft)"/>
+        <ellipse cx="1400" cy="130" rx="900" ry="1.5" fill="url(#flare-grad)" opacity=".85"/>
+      </svg>
+    </div>
+
+    <canvas class="hero__dust" data-dust></canvas>
+    <div class="hero__burn"></div>
+    <div class="hero__vignette"></div>
+  </div>
+
+  <div class="hero__content wrap">
+    <p class="hero__presents slate"><span class="slate__rule" aria-hidden="true"></span>Copperline Athletics presents</p>
+    <h1 class="hero__title" id="hero-title">
+      <span class="line"><span class="line__in">Every athlete</span></span>
+      <span class="line"><span class="line__in">has a <em>turning</em></span></span>
+      <span class="line"><span class="line__in"><em>point.</em></span></span>
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__lede">Copperline is a year-round training facility in Maryland Heights for athletes <strong>8 to 18</strong>. Youth wrestling, club volleyball, and speed &amp; agility — coached by people who learn your kid’s name at the first practice.</p>
+      <div class="hero__actions" data-hero-actions>
+        <a class="btn btn--primary btn--lg" href="#book">Book a free trial</a>
+        <a class="btn btn--ghost btn--lg" href="#schedule">See the schedule</a>
+      </div>
+      <p class="hero__fine">First session free · No contract · No gear needed</p>
+    </div>
+    <dl class="hero__credits">
+      <div><dt>Ages</dt><dd>8 – 18</dd></div>
+      <div><dt>Season</dt><dd>Year-round</dd></div>
+      <div><dt>Location</dt><dd>Maryland Heights, MO</dd></div>
+    </dl>
+  </div>
+
+  <div class="hero__bar">
+    <div class="wrap hero__bar-inner">
+      <p class="ticker"><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__label" data-ticker-label>Next session</span> <span class="ticker__text" data-next>Monday to Saturday, from 4:30 PM</span></p>
+      <a class="ticker__link" href="#schedule">Full week <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <div class="letterbox" aria-hidden="true"><span class="letterbox__top"></span><span class="letterbox__bot"></span></div>
+</section>
+
+<!-- ============================== PROGRAMS ============================== -->
+<section class="programs" id="programs" aria-labelledby="programs-title" data-scene="SC 01 · Programs">
+  <div class="wrap section-head section-head--split">
+    <div>
+      <p class="slate"><span class="slate__sc">SC 01</span> Programs</p>
+      <h2 class="section-title" id="programs-title" tabindex="-1">Three programs. <em>One standard.</em></h2>
+    </div>
+    <p class="section-lede">Small groups, split by age, so an eight-year-old is never lined up across from a high-school senior. Every program runs all year.</p>
+  </div>
+
+  <div class="scenes wrap">
+    <!-- Scene 01 · Wrestling -->
+    <article class="scene" data-tone="1" id="program-wrestling" aria-labelledby="p-wrestling">
+      <div class="scene__frame">
+        <div class="scene__art" aria-hidden="true">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <defs>
+              <linearGradient id="w-cone" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffd9b0" stop-opacity=".42"/>
+                <stop offset=".55" stop-color="#ff7a45" stop-opacity=".12"/>
+                <stop offset="1" stop-color="#ff5b2e" stop-opacity="0"/>
+              </linearGradient>
+              <radialGradient id="w-pool" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ff6a3a" stop-opacity=".5"/>
+                <stop offset=".6" stop-color="#ff5b2e" stop-opacity=".12"/>
+                <stop offset="1" stop-color="#ff5b2e" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="800" height="600" fill="#0b0605"/>
+            <g class="w-cone" fill="url(#w-cone)">
+              <polygon points="384,-40 416,-40 640,470 160,470" opacity=".55"/>
+              <polygon points="376,-40 424,-40 720,470 80,470" opacity=".35"/>
+              <polygon points="368,-40 432,-40 800,470 0,470" opacity=".22"/>
+              <polygon points="360,-40 440,-40 880,470 -80,470" opacity=".12"/>
+            </g>
+            <ellipse cx="400" cy="450" rx="400" ry="130" fill="url(#w-pool)"/>
+            <g transform="translate(400 450) scale(1 .3)">
+              <circle r="360" fill="none" stroke="#ff5b2e" stroke-opacity=".18" stroke-width="3"/>
+              <circle r="280" fill="none" stroke="#ff5b2e" stroke-opacity=".85" stroke-width="12"/>
+              <g class="w-ring"><circle r="215" fill="none" stroke="#f3ede3" stroke-opacity=".28" stroke-width="2.5" stroke-dasharray="10 22"/></g>
+              <circle r="64" fill="none" stroke="#f3ede3" stroke-opacity=".7" stroke-width="4"/>
+              <line x1="-16" y1="-34" x2="-16" y2="34" stroke="#ff5b2e" stroke-width="7"/>
+              <line x1="16" y1="-34" x2="16" y2="34" stroke="#7fd4e2" stroke-width="7"/>
+            </g>
+            <g class="specks" fill="#ffe2c4">
+              <circle cx="380" cy="120" r="1.6"/><circle cx="420" cy="210" r="1.2"/><circle cx="352" cy="300" r="1.4"/>
+              <circle cx="470" cy="260" r="1"/><circle cx="398" cy="352" r="1.3"/><circle cx="330" cy="190" r="1"/>
+            </g>
+          </svg>
+        </div>
+        <span class="scene__num" aria-hidden="true">01</span>
+        <div class="scene__meta" aria-hidden="true"><span>SC 01 — Mat room</span><span>24 fps · T2.0</span></div>
+        <div class="scene__body">
+          <p class="scene__ages">Ages 8–18 <span>Rookies 8–11 · Prep 12–18</span></p>
+          <h3 class="scene__title" id="p-wrestling"><span class="focus focus--soft" aria-hidden="true">Youth Wrestling</span><span class="focus focus--sharp">Youth Wrestling</span></h3>
+          <p class="scene__builds"><span class="scene__builds-label">Builds</span> Body control, grit, and the nerve to get back up after a tough round.</p>
+          <div class="scene__links">
+            <a class="link-arrow" href="#schedule" data-filter="wrestling">Wrestling times</a>
+            <a class="link-arrow link-arrow--accent" href="#book" data-program="wrestling">Try it free</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Scene 02 · Volleyball -->
+    <article class="scene" data-tone="2" id="program-volleyball" aria-labelledby="p-volleyball">
+      <div class="scene__frame">
+        <div class="scene__art" aria-hidden="true">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <defs>
+              <radialGradient id="v-haze" cx="62%" cy="8%" r="75%">
+                <stop offset="0" stop-color="#ffd08a" stop-opacity=".42"/>
+                <stop offset=".5" stop-color="#f5b452" stop-opacity=".08"/>
+                <stop offset="1" stop-color="#f5b452" stop-opacity="0"/>
+              </radialGradient>
+              <pattern id="v-mesh" width="18" height="18" patternUnits="userSpaceOnUse">
+                <path d="M18 0H0V18" fill="none" stroke="#f3ede3" stroke-opacity=".2" stroke-width="1"/>
+              </pattern>
+              <linearGradient id="v-fade" x1="0" x2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+                <stop offset=".18" stop-color="#fff" stop-opacity="1"/>
+                <stop offset=".82" stop-color="#fff" stop-opacity="1"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+              <mask id="v-mask"><rect width="800" height="600" fill="url(#v-fade)"/></mask>
+              <radialGradient id="v-glow">
+                <stop offset="0" stop-color="#ffd08a" stop-opacity=".45"/>
+                <stop offset=".35" stop-color="#ffd08a" stop-opacity=".12"/>
+                <stop offset="1" stop-color="#ffd08a" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="v-ball">
+                <stop offset="0" stop-color="#fff8ec"/>
+                <stop offset=".55" stop-color="#ffd08a"/>
+                <stop offset="1" stop-color="#c98a2e"/>
+              </radialGradient>
+            </defs>
+            <rect width="800" height="600" fill="#0b0905"/>
+            <rect width="800" height="600" fill="url(#v-haze)"/>
+            <g mask="url(#v-mask)">
+              <rect x="0" y="300" width="800" height="112" fill="url(#v-mesh)"/>
+              <rect x="0" y="291" width="800" height="10" fill="#f3ede3" opacity=".88"/>
+              <rect x="0" y="410" width="800" height="5" fill="#f3ede3" opacity=".4"/>
+              <line x1="0" y1="560" x2="800" y2="560" stroke="#f5b452" stroke-opacity=".35" stroke-width="2"/>
+              <line x1="0" y1="575" x2="800" y2="575" stroke="#f5b452" stroke-opacity=".12" stroke-width="1"/>
+            </g>
+            <g class="v-antenna">
+              <rect x="108" y="196" width="5" height="105" fill="#f3ede3"/>
+              <rect x="108" y="196" width="5" height="12" fill="#ff5b2e"/><rect x="108" y="220" width="5" height="12" fill="#ff5b2e"/><rect x="108" y="244" width="5" height="12" fill="#ff5b2e"/><rect x="108" y="268" width="5" height="12" fill="#ff5b2e"/>
+              <rect x="688" y="196" width="5" height="105" fill="#f3ede3"/>
+              <rect x="688" y="196" width="5" height="12" fill="#ff5b2e"/><rect x="688" y="220" width="5" height="12" fill="#ff5b2e"/><rect x="688" y="244" width="5" height="12" fill="#ff5b2e"/><rect x="688" y="268" width="5" height="12" fill="#ff5b2e"/>
+            </g>
+            <path d="M120 330Q400 -150 680 260" fill="none" stroke="#ffd08a" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="1 7"/>
+            <g class="v-strobe" fill="#0b0905" stroke="#ffd08a" stroke-width="2">
+              <circle style="--i:0" cx="120" cy="330" r="14"/>
+              <circle style="--i:1" cx="176" cy="243" r="14"/>
+              <circle style="--i:2" cx="232" cy="174" r="14"/>
+              <circle style="--i:3" cx="288" cy="122" r="14"/>
+              <circle style="--i:4" cx="344" cy="88" r="14"/>
+              <circle style="--i:5" cx="400" cy="73" r="14"/>
+              <circle style="--i:6" cx="456" cy="74" r="14"/>
+              <circle style="--i:7" cx="512" cy="94" r="14"/>
+              <circle style="--i:8" cx="568" cy="132" r="14"/>
+              <circle style="--i:9" cx="624" cy="187" r="14"/>
+            </g>
+            <circle cx="680" cy="260" r="70" fill="url(#v-glow)"/>
+            <circle cx="680" cy="260" r="16" fill="url(#v-ball)"/>
+            <g fill="none" stroke="#8a5a1a" stroke-width="1.3" stroke-linecap="round" opacity=".75">
+              <path d="M680 260c-1-6 1-11 5-15"/><path d="M680 260c5 3 10 3 15 0"/><path d="M680 260c-5 3-8 8-9 14"/>
+              <path d="M674 247c4 2 6 6 6 13"/><path d="M693 254c-3 4-8 6-13 6"/><path d="M672 270c3-5 6-8 8-10"/>
+            </g>
+          </svg>
+        </div>
+        <span class="scene__num" aria-hidden="true">02</span>
+        <div class="scene__meta" aria-hidden="true"><span>SC 02 — Court 1</span><span>12 exposures · 1/250</span></div>
+        <div class="scene__body">
+          <p class="scene__ages">Ages 10–18 <span>12U · 14U · 16U · 18U teams</span></p>
+          <h3 class="scene__title" id="p-volleyball"><span class="focus focus--soft" aria-hidden="true">Club Volleyball</span><span class="focus focus--sharp">Club Volleyball</span></h3>
+          <p class="scene__builds"><span class="scene__builds-label">Builds</span> Clean platform passing, loud court communication, and serving under real pressure.</p>
+          <div class="scene__links">
+            <a class="link-arrow" href="#schedule" data-filter="volleyball">Volleyball times</a>
+            <a class="link-arrow link-arrow--accent" href="#book" data-program="volleyball">Try it free</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Scene 03 · Speed & Agility -->
+    <article class="scene" data-tone="3" id="program-speed" aria-labelledby="p-speed">
+      <div class="scene__frame">
+        <div class="scene__art" aria-hidden="true">
+          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <defs>
+              <radialGradient id="s-haze" cx="75%" cy="40%" r="70%">
+                <stop offset="0" stop-color="#b5ecf2" stop-opacity=".3"/>
+                <stop offset=".45" stop-color="#7fd4e2" stop-opacity=".07"/>
+                <stop offset="1" stop-color="#7fd4e2" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s-streak" x1="0" x2="1">
+                <stop offset="0" stop-color="#7fd4e2" stop-opacity="0"/>
+                <stop offset="1" stop-color="#b5ecf2" stop-opacity=".9"/>
+              </linearGradient>
+              <linearGradient id="s-floor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#7fd4e2" stop-opacity=".16"/>
+                <stop offset="1" stop-color="#7fd4e2" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="600" fill="#05090a"/>
+            <rect width="800" height="600" fill="url(#s-haze)"/>
+            <rect y="240" width="800" height="360" fill="url(#s-floor)"/>
+            <line x1="0" y1="240" x2="800" y2="240" stroke="#b5ecf2" stroke-opacity=".5" stroke-width="1"/>
+            <g class="s-streaks" stroke="url(#s-streak)" stroke-linecap="round">
+              <line style="--i:0" x1="60" y1="128" x2="340" y2="128" stroke-width="2"/>
+              <line style="--i:1" x1="180" y1="156" x2="560" y2="156" stroke-width="1.2"/>
+              <line style="--i:2" x1="10" y1="182" x2="250" y2="182" stroke-width="1.6"/>
+              <line style="--i:3" x1="300" y1="206" x2="700" y2="206" stroke-width="1"/>
+              <line style="--i:4" x1="120" y1="98" x2="420" y2="98" stroke-width=".8"/>
+            </g>
+            <g class="s-ladder" fill="none" stroke="#b5ecf2" stroke-linecap="round">
+              <line x1="120" y1="600" x2="493" y2="320" stroke-width="3" stroke-opacity=".8"/>
+              <line x1="420" y1="600" x2="560" y2="320" stroke-width="3" stroke-opacity=".8"/>
+              <line x1="120" y1="600" x2="420" y2="600" stroke-width="3"/>
+              <line x1="244" y1="507" x2="467" y2="507" stroke-width="2.6"/>
+              <line x1="318" y1="452" x2="494" y2="452" stroke-width="2.2" stroke-opacity=".9"/>
+              <line x1="366" y1="416" x2="512" y2="416" stroke-width="1.9" stroke-opacity=".85"/>
+              <line x1="400" y1="390" x2="525" y2="390" stroke-width="1.7" stroke-opacity=".8"/>
+              <line x1="426" y1="371" x2="535" y2="371" stroke-width="1.5" stroke-opacity=".75"/>
+              <line x1="445" y1="356" x2="542" y2="356" stroke-width="1.3" stroke-opacity=".7"/>
+              <line x1="461" y1="344" x2="548" y2="344" stroke-width="1.2" stroke-opacity=".65"/>
+              <line x1="474" y1="335" x2="553" y2="335" stroke-width="1.1" stroke-opacity=".6"/>
+              <line x1="484" y1="327" x2="557" y2="327" stroke-width="1" stroke-opacity=".55"/>
+              <line x1="493" y1="320" x2="560" y2="320" stroke-width="1" stroke-opacity=".5"/>
+            </g>
+            <g class="s-steps" fill="#e8fbff">
+              <ellipse style="--i:0" cx="260" cy="556" rx="11" ry="5"/>
+              <ellipse style="--i:1" cx="365" cy="550" rx="11" ry="5"/>
+              <ellipse style="--i:2" cx="368" cy="480" rx="9" ry="4"/>
+              <ellipse style="--i:3" cx="440" cy="477" rx="9" ry="4"/>
+              <ellipse style="--i:4" cx="410" cy="434" rx="7" ry="3"/>
+              <ellipse style="--i:5" cx="470" cy="432" rx="7" ry="3"/>
+              <ellipse style="--i:6" cx="440" cy="403" rx="6" ry="2.6"/>
+              <ellipse style="--i:7" cx="488" cy="402" rx="6" ry="2.6"/>
+            </g>
+            <g class="s-gates">
+              <line x1="92" y1="600" x2="92" y2="470" stroke="#f3ede3" stroke-opacity=".7" stroke-width="4"/>
+              <line x1="452" y1="600" x2="452" y2="470" stroke="#f3ede3" stroke-opacity=".7" stroke-width="4"/>
+              <line class="s-laser" x1="92" y1="488" x2="452" y2="488" stroke="#b5ecf2" stroke-width="1.5"/>
+              <line x1="92" y1="488" x2="452" y2="488" stroke="#7fd4e2" stroke-width="9" stroke-opacity=".18"/>
+              <line x1="478" y1="322" x2="478" y2="262" stroke="#f3ede3" stroke-opacity=".6" stroke-width="2"/>
+              <line x1="574" y1="322" x2="574" y2="262" stroke="#f3ede3" stroke-opacity=".6" stroke-width="2"/>
+              <line class="s-laser" x1="478" y1="270" x2="574" y2="270" stroke="#b5ecf2" stroke-width="1"/>
+            </g>
+            <g class="s-readout" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#b5ecf2">
+              <text x="600" y="300" font-size="15" letter-spacing="2" opacity=".6">GATE 2 · 10 YD</text>
+              <text x="600" y="330" font-size="30" letter-spacing="1">1.62 s</text>
+            </g>
+          </svg>
+        </div>
+        <span class="scene__num" aria-hidden="true">03</span>
+        <div class="scene__meta" aria-hidden="true"><span>SC 03 — Speed lane</span><span>Laser gates · 0.01 s</span></div>
+        <div class="scene__body">
+          <p class="scene__ages">Ages 8–18 <span>Grouped 8–12 · 13–18</span></p>
+          <h3 class="scene__title" id="p-speed"><span class="focus focus--soft" aria-hidden="true">Speed &amp; Agility</span><span class="focus focus--sharp">Speed &amp; Agility</span></h3>
+          <p class="scene__builds"><span class="scene__builds-label">Builds</span> First-step quickness and safe landing mechanics that carry into every sport they play.</p>
+          <div class="scene__links">
+            <a class="link-arrow" href="#schedule" data-filter="speed">Speed &amp; Agility times</a>
+            <a class="link-arrow link-arrow--accent" href="#book" data-program="speed">Try it free</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== SCHEDULE / CALL SHEET ============================== -->
+<section class="callsheet" id="schedule" aria-labelledby="schedule-title" data-scene="SC 02 · Call sheet">
+  <div class="leak leak--sheet" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="callsheet__head">
+      <div>
+        <p class="slate"><span class="slate__sc">SC 02</span> The call sheet</p>
+        <h2 class="section-title" id="schedule-title" tabindex="-1">Weekly <em>schedule.</em></h2>
+        <p class="section-lede">Same times every week, all year. Holiday closures are posted here two weeks ahead. Your first session in any program is free.</p>
+      </div>
+      <div class="callsheet__now">
+        <p class="callsheet__now-label" data-next-label>Next up</p>
+        <p class="callsheet__now-text" data-next-long>Sessions run Monday to Saturday.</p>
+      </div>
+    </div>
+
+    <div class="filter" role="group" aria-label="Show sessions for">
+      <button type="button" class="chip" data-show="all" aria-pressed="true">All programs</button>
+      <button type="button" class="chip" data-tone="1" data-show="wrestling" aria-pressed="false">Wrestling</button>
+      <button type="button" class="chip" data-tone="2" data-show="volleyball" aria-pressed="false">Volleyball</button>
+      <button type="button" class="chip" data-tone="3" data-show="speed" aria-pressed="false">Speed &amp; Agility</button>
+    </div>
+
+    <ol class="week" data-week>
+      <li class="day" data-day="1">
+        <h3 class="day__name">Monday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="3" data-program="speed" data-end="17:30" data-start="16:30"><span class="session__time">4:30 – 5:30 PM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">Ages 8–12</span></li>
+          <li class="session" data-tone="2" data-program="volleyball" data-end="19:15" data-start="17:45"><span class="session__time">5:45 – 7:15 PM</span><span class="session__prog">Club Volleyball</span><span class="session__ages">12U – 14U</span></li>
+          <li class="session" data-tone="1" data-program="wrestling" data-end="19:30" data-start="18:00"><span class="session__time">6:00 – 7:30 PM</span><span class="session__prog">Youth Wrestling</span><span class="session__ages">Prep · 12–18</span></li>
+        </ul>
+      </li>
+      <li class="day" data-day="2">
+        <h3 class="day__name">Tuesday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="1" data-program="wrestling" data-end="17:30" data-start="16:30"><span class="session__time">4:30 – 5:30 PM</span><span class="session__prog">Youth Wrestling</span><span class="session__ages">Rookies · 8–11</span></li>
+          <li class="session" data-tone="3" data-program="speed" data-end="18:30" data-start="17:30"><span class="session__time">5:30 – 6:30 PM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">Ages 13–18</span></li>
+          <li class="session" data-tone="2" data-program="volleyball" data-end="20:30" data-start="18:30"><span class="session__time">6:30 – 8:30 PM</span><span class="session__prog">Club Volleyball</span><span class="session__ages">15U – 18U</span></li>
+        </ul>
+      </li>
+      <li class="day" data-day="3">
+        <h3 class="day__name">Wednesday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="3" data-program="speed" data-end="17:30" data-start="16:30"><span class="session__time">4:30 – 5:30 PM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">Ages 8–12</span></li>
+          <li class="session" data-tone="2" data-program="volleyball" data-end="19:15" data-start="17:45"><span class="session__time">5:45 – 7:15 PM</span><span class="session__prog">Club Volleyball</span><span class="session__ages">12U – 14U</span></li>
+          <li class="session" data-tone="1" data-program="wrestling" data-end="19:30" data-start="18:00"><span class="session__time">6:00 – 7:30 PM</span><span class="session__prog">Youth Wrestling</span><span class="session__ages">Prep · 12–18</span></li>
+        </ul>
+      </li>
+      <li class="day" data-day="4">
+        <h3 class="day__name">Thursday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="1" data-program="wrestling" data-end="17:30" data-start="16:30"><span class="session__time">4:30 – 5:30 PM</span><span class="session__prog">Youth Wrestling</span><span class="session__ages">Rookies · 8–11</span></li>
+          <li class="session" data-tone="3" data-program="speed" data-end="18:30" data-start="17:30"><span class="session__time">5:30 – 6:30 PM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">Ages 13–18</span></li>
+          <li class="session" data-tone="2" data-program="volleyball" data-end="20:30" data-start="18:30"><span class="session__time">6:30 – 8:30 PM</span><span class="session__prog">Club Volleyball</span><span class="session__ages">15U – 18U</span></li>
+        </ul>
+      </li>
+      <li class="day" data-day="5">
+        <h3 class="day__name">Friday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="3" data-program="speed" data-end="17:30" data-start="16:30"><span class="session__time">4:30 – 5:30 PM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">All ages</span></li>
+          <li class="session" data-tone="1" data-program="wrestling" data-end="19:00" data-start="17:30"><span class="session__time">5:30 – 7:00 PM</span><span class="session__prog">Youth Wrestling</span><span class="session__ages">Open mat · all ages</span></li>
+        </ul>
+      </li>
+      <li class="day" data-day="6">
+        <h3 class="day__name">Saturday</h3>
+        <ul class="day__list">
+          <li class="session" data-tone="3" data-program="speed" data-end="10:00" data-start="09:00"><span class="session__time">9:00 – 10:00 AM</span><span class="session__prog">Speed &amp; Agility</span><span class="session__ages">All ages</span></li>
+          <li class="session" data-tone="2" data-program="volleyball" data-end="12:15" data-start="10:15"><span class="session__time">10:15 AM – 12:15 PM</span><span class="session__prog">Club Volleyball</span><span class="session__ages">Skills clinic · 10–18</span></li>
+        </ul>
+      </li>
+    </ol>
+    <p class="callsheet__foot">Sundays: closed. Rest is part of training. <a class="link-arrow link-arrow--accent" href="#book">Book a free trial</a></p>
+  </div>
+</section>
+
+<!-- ============================== STATS / LEADER ============================== -->
+<section class="leader" aria-labelledby="stats-title" data-scene="SC 03 · Leader">
+  <div class="wrap leader__wrap">
+    <h2 class="leader__title slate" id="stats-title"><span class="slate__sc">SC 03</span> By the numbers</h2>
+    <ul class="leader__list">
+      <li class="dial" data-reveal>
+        <div class="dial__face" aria-hidden="true">
+          <span class="dial__sweep"></span>
+          <svg viewBox="0 0 200 200" focusable="false"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="74"/><line x1="0" y1="100" x2="200" y2="100"/><line x1="100" y1="0" x2="100" y2="200"/></svg>
+          <span class="dial__num" data-count="312">312</span>
+        </div>
+        <p class="dial__label"><span class="sr-only">312 </span>athletes training this season</p>
+      </li>
+      <li class="dial" data-reveal style="--d:1">
+        <div class="dial__face" aria-hidden="true">
+          <span class="dial__sweep"></span>
+          <svg viewBox="0 0 200 200" focusable="false"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="74"/><line x1="0" y1="100" x2="200" y2="100"/><line x1="100" y1="0" x2="100" y2="200"/></svg>
+          <span class="dial__num" data-count="11">11</span>
+        </div>
+        <p class="dial__label"><span class="sr-only">11 </span>years in Maryland Heights</p>
+      </li>
+      <li class="dial" data-reveal style="--d:2">
+        <div class="dial__face" aria-hidden="true">
+          <span class="dial__sweep"></span>
+          <svg viewBox="0 0 200 200" focusable="false"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="74"/><line x1="0" y1="100" x2="200" y2="100"/><line x1="100" y1="0" x2="100" y2="200"/></svg>
+          <span class="dial__num" data-count="9">9</span>
+        </div>
+        <p class="dial__label"><span class="sr-only">9 </span>coaches and trainers on staff</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== COACHES / CAST ============================== -->
+<section class="cast" id="coaches" aria-labelledby="coaches-title" data-scene="SC 04 · The cast">
+  <div class="leak leak--cast" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="slate"><span class="slate__sc">SC 04</span> The cast</p>
+        <h2 class="section-title" id="coaches-title" tabindex="-1">Coaches who’ve <em>been there.</em></h2>
+      </div>
+      <p class="section-lede">Every Copperline coach is background-checked, CPR certified, and has competed at the level your athlete is chasing.</p>
+    </div>
+
+    <ol class="credits">
+      <li class="credit" data-tone="1" data-reveal>
+        <figure class="photo-slot photo-slot--portrait" style="--initial:'D'">
+          <div class="photo-slot__frame" role="img" aria-label="Photo slot for Coach Dana Okafor’s portrait">
+            <span class="photo-slot__corners" aria-hidden="true"></span>
+            <span class="photo-slot__rec" aria-hidden="true">REC</span>
+            <span class="photo-slot__label" aria-hidden="true">Photo slot</span>
+            <span class="photo-slot__spec" aria-hidden="true">Portrait · 4:5</span>
+          </div>
+        </figure>
+        <div class="credit__text">
+          <p class="credit__role">Head Wrestling Coach</p>
+          <h3 class="credit__name"><span>Dana</span> <span>Okafor</span></h3>
+          <p class="credit__line">Two-time NCAA Division II qualifier who still coaches the eight-year-olds herself, because that’s where habits start.</p>
+        </div>
+      </li>
+      <li class="credit" data-tone="2" data-reveal>
+        <figure class="photo-slot photo-slot--portrait" style="--initial:'M'">
+          <div class="photo-slot__frame" role="img" aria-label="Photo slot for Coach Marcus Velez’s portrait">
+            <span class="photo-slot__corners" aria-hidden="true"></span>
+            <span class="photo-slot__rec" aria-hidden="true">REC</span>
+            <span class="photo-slot__label" aria-hidden="true">Photo slot</span>
+            <span class="photo-slot__spec" aria-hidden="true">Portrait · 4:5</span>
+          </div>
+        </figure>
+        <div class="credit__text">
+          <p class="credit__role">Club Volleyball Director</p>
+          <h3 class="credit__name"><span>Marcus</span> <span>Velez</span></h3>
+          <p class="credit__line">Former college outside hitter who runs every practice off a whiteboard, a stopwatch, and a lot of reps.</p>
+        </div>
+      </li>
+      <li class="credit" data-tone="3" data-reveal>
+        <figure class="photo-slot photo-slot--portrait" style="--initial:'P'">
+          <div class="photo-slot__frame" role="img" aria-label="Photo slot for Coach Priya Hale’s portrait">
+            <span class="photo-slot__corners" aria-hidden="true"></span>
+            <span class="photo-slot__rec" aria-hidden="true">REC</span>
+            <span class="photo-slot__label" aria-hidden="true">Photo slot</span>
+            <span class="photo-slot__spec" aria-hidden="true">Portrait · 4:5</span>
+          </div>
+        </figure>
+        <div class="credit__text">
+          <p class="credit__role">Speed &amp; Agility Lead · CSCS</p>
+          <h3 class="credit__name"><span>Priya</span> <span>Hale</span></h3>
+          <p class="credit__line">Certified strength coach who would rather fix a landing than add a rep.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== FACILITY / LOCATION ============================== -->
+<section class="location" id="facility" aria-labelledby="facility-title" data-scene="SC 05 · Location">
+  <div class="wrap location__grid">
+    <div class="location__copy">
+      <p class="slate"><span class="slate__sc">SC 05</span> Location</p>
+      <h2 class="section-title" id="facility-title" tabindex="-1"><span class="location__big">18,000</span> sq ft <em>under one roof.</em></h2>
+      <p class="section-lede">A converted warehouse off I-270, rebuilt in 2019 around one rule: every program gets its own space, so nobody waits for a court.</p>
+    </div>
+
+    <figure class="plan" data-reveal>
+      <svg class="plan__svg" viewBox="0 0 800 520" role="img" aria-labelledby="plan-title" focusable="false">
+        <title id="plan-title">Floor plan: two volleyball courts and a parent mezzanine on the left, mat room top right, lobby in the middle, speed lane along the bottom, strength and recovery bottom right.</title>
+        <g class="plan__zone" data-zone="courts">
+          <rect class="plan__fill" x="20" y="20" width="500" height="270"/>
+          <rect class="draw" style="--d:2" pathLength="1" x="80" y="48" width="120" height="226"/>
+          <line class="draw" style="--d:3" pathLength="1" x1="80" y1="161" x2="200" y2="161"/>
+          <line class="draw thin" style="--d:4" pathLength="1" x1="80" y1="123" x2="200" y2="123"/>
+          <line class="draw thin" style="--d:4" pathLength="1" x1="80" y1="199" x2="200" y2="199"/>
+          <rect class="draw" style="--d:3" pathLength="1" x="320" y="48" width="120" height="226"/>
+          <line class="draw" style="--d:4" pathLength="1" x1="320" y1="161" x2="440" y2="161"/>
+          <line class="draw thin" style="--d:5" pathLength="1" x1="320" y1="123" x2="440" y2="123"/>
+          <line class="draw thin" style="--d:5" pathLength="1" x1="320" y1="199" x2="440" y2="199"/>
+          <text x="140" y="96" class="plan__label" text-anchor="middle">COURT 1</text>
+          <text x="380" y="96" class="plan__label" text-anchor="middle">COURT 2</text>
+        </g>
+        <g class="plan__zone" data-zone="mezz">
+          <rect class="plan__fill" x="214" y="34" width="92" height="248"/>
+          <rect class="draw dashed" style="--d:6" pathLength="1" x="214" y="34" width="92" height="248"/>
+          <text x="260" y="152" class="plan__label" text-anchor="middle">MEZZ</text>
+          <text x="260" y="170" class="plan__label plan__label--dim" text-anchor="middle">UPPER</text>
+        </g>
+        <g class="plan__zone" data-zone="mats">
+          <rect class="plan__fill" x="520" y="20" width="260" height="270"/>
+          <circle class="draw" style="--d:3" pathLength="1" cx="590" cy="94" r="50"/>
+          <circle class="draw" style="--d:4" pathLength="1" cx="710" cy="94" r="50"/>
+          <circle class="draw" style="--d:5" pathLength="1" cx="650" cy="206" r="50"/>
+          <circle class="draw thin" style="--d:6" pathLength="1" cx="590" cy="94" r="12"/>
+          <circle class="draw thin" style="--d:6" pathLength="1" cx="710" cy="94" r="12"/>
+          <circle class="draw thin" style="--d:6" pathLength="1" cx="650" cy="206" r="12"/>
+          <text x="650" y="276" class="plan__label" text-anchor="middle">MAT ROOM</text>
+        </g>
+        <g class="plan__zone" data-zone="lobby">
+          <rect class="plan__fill" x="20" y="290" width="540" height="100"/>
+          <rect class="draw thin" style="--d:6" pathLength="1" x="60" y="318" width="120" height="26"/>
+          <text x="340" y="346" class="plan__label" text-anchor="middle">LOBBY · FRONT DESK</text>
+          <text x="34" y="378" class="plan__label plan__label--dim">← ENTRANCE</text>
+        </g>
+        <g class="plan__zone" data-zone="lane">
+          <rect class="plan__fill" x="20" y="390" width="540" height="110"/>
+          <rect class="draw" style="--d:4" pathLength="1" x="40" y="418" width="500" height="54"/>
+          <line class="draw thin" style="--d:5" pathLength="1" x1="102" y1="418" x2="102" y2="472"/>
+          <line class="draw thin" style="--d:5" pathLength="1" x1="165" y1="418" x2="165" y2="472"/>
+          <line class="draw thin" style="--d:5" pathLength="1" x1="227" y1="418" x2="227" y2="472"/>
+          <line class="draw thin" style="--d:6" pathLength="1" x1="290" y1="418" x2="290" y2="472"/>
+          <line class="draw thin" style="--d:6" pathLength="1" x1="352" y1="418" x2="352" y2="472"/>
+          <line class="draw thin" style="--d:6" pathLength="1" x1="415" y1="418" x2="415" y2="472"/>
+          <line class="draw thin" style="--d:7" pathLength="1" x1="477" y1="418" x2="477" y2="472"/>
+          <line class="plan__laser" x1="40" y1="410" x2="40" y2="480"/>
+          <line class="plan__laser" x1="540" y1="410" x2="540" y2="480"/>
+          <text x="290" y="494" class="plan__label" text-anchor="middle">SPEED LANE · 40 YD</text>
+        </g>
+        <g class="plan__zone" data-zone="strength">
+          <rect class="plan__fill" x="560" y="290" width="220" height="210"/>
+          <rect class="draw thin" style="--d:5" pathLength="1" x="590" y="318" width="34" height="52"/>
+          <rect class="draw thin" style="--d:5" pathLength="1" x="640" y="318" width="34" height="52"/>
+          <rect class="draw thin" style="--d:6" pathLength="1" x="690" y="318" width="34" height="52"/>
+          <rect class="draw thin" style="--d:6" pathLength="1" x="590" y="392" width="160" height="40"/>
+          <text x="670" y="462" class="plan__label" text-anchor="middle">STRENGTH +</text>
+          <text x="670" y="480" class="plan__label" text-anchor="middle">RECOVERY</text>
+        </g>
+        <!-- walls -->
+        <rect class="draw wall" style="--d:0" pathLength="1" x="20" y="20" width="760" height="480"/>
+        <path class="draw wall" style="--d:1" pathLength="1" d="M520 20V290H780M20 290H560V500M20 390H560"/>
+        <line class="plan__door" x1="20" y1="324" x2="20" y2="362"/>
+        <!-- dimensions -->
+        <g class="plan__dims">
+          <line x1="20" y1="8" x2="780" y2="8"/><line x1="20" y1="3" x2="20" y2="13"/><line x1="780" y1="3" x2="780" y2="13"/>
+          <text x="400" y="4" text-anchor="middle" class="plan__label plan__label--dim">168 FT</text>
+          <line x1="792" y1="20" x2="792" y2="500"/><line x1="787" y1="20" x2="797" y2="20"/><line x1="787" y1="500" x2="797" y2="500"/>
+        </g>
+        <text x="20" y="516" class="plan__label plan__label--dim">107 FT DEEP · NOT TO SCALE</text>
+      </svg>
+      <figcaption class="plan__cap">Tap a space to light it up on the plan.</figcaption>
+    </figure>
+    <ul class="zones" data-zones>
+      <li><button type="button" class="zone" data-zone="courts" aria-pressed="false"><span class="zone__name">Two volleyball courts</span><span class="zone__spec">Sport-court floor, 26 ft clear ceilings</span></button></li>
+      <li><button type="button" class="zone" data-zone="mats" aria-pressed="false"><span class="zone__name">Mat room</span><span class="zone__spec">1,800 sq ft of mat, three circles</span></button></li>
+      <li><button type="button" class="zone" data-zone="lane" aria-pressed="false"><span class="zone__name">Speed lane</span><span class="zone__spec">40 yards of turf, laser timing gates</span></button></li>
+      <li><button type="button" class="zone" data-zone="strength" aria-pressed="false"><span class="zone__name">Strength &amp; recovery</span><span class="zone__spec">Racks, sleds, bands and a stretch zone</span></button></li>
+      <li><button type="button" class="zone" data-zone="mezz" aria-pressed="false"><span class="zone__name">Parent mezzanine</span><span class="zone__spec">Seats over both courts, Wi-Fi, a homework table</span></button></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== QUOTE / SUBTITLE ============================== -->
+<section class="subtitle" aria-labelledby="quote-title" data-scene="SC 06 · From the sideline">
+  <div class="wrap">
+    <h2 class="slate subtitle__slate" id="quote-title"><span class="slate__sc">SC 06</span> From the sideline</h2>
+    <figure class="subtitle__figure" data-reveal>
+      <div class="photo-slot photo-slot--wide" style="--initial:''">
+        <div class="photo-slot__frame" role="img" aria-label="Photo slot for a wide family or team photo">
+          <span class="photo-slot__corners" aria-hidden="true"></span>
+          <span class="photo-slot__rec" aria-hidden="true">REC</span>
+          <span class="photo-slot__label" aria-hidden="true">Photo slot</span>
+          <span class="photo-slot__spec" aria-hidden="true">Family or team moment · wide</span>
+        </div>
+        <blockquote class="subtitle__quote" data-subtitle>
+          <p>My daughter walked in scared of the ball. Six months later, she’s the one calling for it.</p>
+        </blockquote>
+      </div>
+      <figcaption class="subtitle__cap">
+        <span>Parent of a 13U volleyball player</span>
+        <span class="sample-tag">Sample — your families’ words go here</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== BOOK + VISIT ============================== -->
+<section class="finale" id="book" aria-labelledby="book-title" data-scene="SC 07 · Your turn">
+  <div class="leak leak--finale-a" aria-hidden="true"></div>
+  <div class="leak leak--finale-b" aria-hidden="true"></div>
+  <div class="wrap finale__grid">
+    <div class="finale__main">
+      <p class="slate"><span class="slate__sc">SC 07</span> Your turn</p>
+      <h2 class="finale__title" id="book-title" tabindex="-1">Book a <em>free trial.</em></h2>
+      <p class="section-lede">Pick a program and a day. A coach will text or email you within one business day to confirm a time. No contract, no gear — just water and athletic shoes.</p>
+
+      <form class="form" data-form>
+        <div class="form__row">
+          <div class="field">
+            <label for="f-name">Parent or guardian name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-contact">Phone or email</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="email" required>
+          </div>
+        </div>
+
+        <fieldset class="field field--choice">
+          <legend>Program</legend>
+          <div class="choices">
+            <label class="choice" data-tone="1"><input type="radio" name="program" value="wrestling" required><span>Youth Wrestling</span></label>
+            <label class="choice" data-tone="2"><input type="radio" name="program" value="volleyball"><span>Club Volleyball</span></label>
+            <label class="choice" data-tone="3"><input type="radio" name="program" value="speed"><span>Speed &amp; Agility</span></label>
+            <label class="choice"><input type="radio" name="program" value="unsure"><span>Not sure yet</span></label>
+          </div>
+        </fieldset>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="f-age">Athlete’s age</label>
+            <select id="f-age" name="age" required>
+              <option value="">Choose age</option>
+              <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-day">Preferred day</label>
+            <select id="f-day" name="day">
+              <option value="">Any day</option>
+              <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__submit">
+          <button class="btn btn--primary btn--lg" type="submit">Request my free trial</button>
+          <p class="form__note">Demo form — nothing is sent anywhere.</p>
+        </div>
+        <p class="form__status" role="status" data-form-status></p>
+      </form>
+    </div>
+
+    <aside class="visit" id="visit" aria-labelledby="visit-title">
+      <div class="visit__map" aria-hidden="true">
+        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <defs>
+            <pattern id="m-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#f3ede3" stroke-opacity=".06"/></pattern>
+          </defs>
+          <rect width="400" height="240" fill="#08090b"/>
+          <rect width="400" height="240" fill="url(#m-grid)"/>
+          <path d="M-20 34C70 10 110 104 196 96S322 18 420 58" fill="none" stroke="#7fd4e2" stroke-opacity=".22" stroke-width="22" stroke-linecap="round"/>
+          <path d="M-20 34C70 10 110 104 196 96S322 18 420 58" fill="none" stroke="#b5ecf2" stroke-opacity=".5" stroke-width="1.2"/>
+          <path d="M60 250C90 180 150 150 230 150S350 120 420 150" fill="none" stroke="#f3ede3" stroke-opacity=".38" stroke-width="3"/>
+          <path d="M250 -10C246 60 240 120 246 250" fill="none" stroke="#f3ede3" stroke-opacity=".16" stroke-width="2"/>
+          <text x="330" y="140" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#b4ac9e" letter-spacing="1.5">I-270</text>
+          <text x="22" y="22" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#7fd4e2" fill-opacity=".8" letter-spacing="1.5">MISSOURI RIVER</text>
+          <circle class="pin__pulse" cx="246" cy="168" r="10" fill="none" style="stroke:var(--accent)" stroke-width="1.5"/>
+          <circle cx="246" cy="168" r="5" style="fill:var(--accent)"/>
+        </svg>
+        <span class="visit__map-note">Illustrative map</span>
+      </div>
+      <h3 class="visit__title" id="visit-title" tabindex="-1">Visit</h3>
+      <address class="visit__addr">2250 Confluence Way<br>Maryland Heights, MO 63043</address>
+      <p class="visit__hint">Off I-270 at Dorsett Rd. Free parking at the door.</p>
+      <p class="visit__status" data-open-status hidden></p>
+      <dl class="hours" data-hours>
+        <div data-days="1,2,3,4" data-open="15:30" data-close="21:00"><dt>Mon – Thu</dt><dd>3:30 – 9:00 PM</dd></div>
+        <div data-days="5" data-open="15:30" data-close="19:30"><dt>Friday</dt><dd>3:30 – 7:30 PM</dd></div>
+        <div data-days="6" data-open="08:30" data-close="13:00"><dt>Saturday</dt><dd>8:30 AM – 1:00 PM</dd></div>
+        <div data-days="0"><dt>Sunday</dt><dd>Closed</dd></div>
+      </dl>
+      <ul class="contact">
+        <li><a href="tel:+13145550148">(314) 555-0148</a></li>
+        <li><a href="mailto:hello@copperline.example">hello@copperline.example</a></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER / END CREDITS ============================== -->
+<footer class="endcredits" data-scene="SC 08 · End credits">
+  <div class="wrap">
+    <div class="endcredits__card">
+      <svg class="endcredits__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <path d="M4 27.5C4 17 27 19 27 9.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" pathLength="1"/>
+        <circle cx="27" cy="4.6" r="1.6" fill="currentColor"/>
+      </svg>
+      <p class="endcredits__line">Doors open at <em>3:30.</em></p>
+    </div>
+
+    <dl class="roll">
+      <div><dt>Youth Wrestling</dt><dd>Dana Okafor</dd></div>
+      <div><dt>Club Volleyball</dt><dd>Marcus Velez</dd></div>
+      <div><dt>Speed &amp; Agility</dt><dd>Priya Hale</dd></div>
+      <div class="roll__star"><dt>Starring</dt><dd>Your athlete</dd></div>
+    </dl>
+
+    <div class="endcredits__grid">
+      <nav aria-label="Footer">
+        <ul class="endcredits__links">
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#coaches">Coaches</a></li>
+          <li><a href="#facility">Facility</a></li>
+          <li><a href="#book">Book a free trial</a></li>
+        </ul>
+      </nav>
+      <div class="grade-switch" role="group" aria-labelledby="grade-label">
+        <p class="grade-switch__label" id="grade-label">Color grade <span>· WebForge system demo</span></p>
+        <div class="grade-switch__opts">
+          <button type="button" class="grade-btn" data-set-grade="tungsten" aria-pressed="true"><span class="grade-btn__sw" aria-hidden="true"></span>Tungsten</button>
+          <button type="button" class="grade-btn" data-set-grade="ember" aria-pressed="false"><span class="grade-btn__sw" aria-hidden="true"></span>Ember</button>
+          <button type="button" class="grade-btn" data-set-grade="lume" aria-pressed="false"><span class="grade-btn__sw" aria-hidden="true"></span>Lume</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="endcredits__legal">
+      <p class="demo-tag">Demo site · fictional club</p>
+      <p>Copperline Athletics, its coaches, schedule and quote are invented to show the WebForge Cinematic system. Address and phone are placeholders.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile action bar: the two things parents need, always one thumb away -->
+<div class="actionbar" data-actionbar>
+  <a class="actionbar__link" href="#schedule">Schedule</a>
+  <a class="btn btn--primary actionbar__cta" href="#book">Book a free trial</a>
+</div>
+
+<!-- WF-DEMO-RIBBON-SPACE:START -->
+<div id="wf-ribbon-space" aria-hidden="true" style="display:block;height:40px;margin:0;padding:0;border:0"></div>
+<!-- WF-DEMO-RIBBON-SPACE:END -->
+</body>
+</html>

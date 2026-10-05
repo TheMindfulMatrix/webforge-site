@@ -2,148 +2,371 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work — WebForge</title>
-<meta name="description" content="Concept builds and design demonstrations for youth sports and training organizations. These are demonstrations, not client projects.">
-<meta property="og:title" content="Work — WebForge">
-<meta property="og:description" content="Concept builds and design demonstrations. Labeled honestly.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Styles — four live demo sites · WebForge</title>
+<meta name="description" content="Four website styles — Kinetic, Cinematic, Bright Club and Precision — each shown as a live demo site for Copperline Athletics, a fictional club. Design demonstrations, not client projects. WebForge builds club websites in St. Louis.">
+<meta property="og:title" content="WebForge — four styles, zero clones">
+<meta property="og:description" content="Four live demo sites, one per style, for a made-up club. Pick a feel; it takes your club's colors.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0A0B">
+<!-- ICONS + SHARING · same on every page; only canonical and og:url change per page -->
+<link rel="canonical" href="https://webforgecreate.org/work.html">
+<meta property="og:url" content="https://webforgecreate.org/work.html">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:site_name" content="WebForge">
+<meta property="og:image" content="https://webforgecreate.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WebForge — Most club websites break quietly. 35 St. Louis club sites checked, 28 had something concretely wrong.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- HEAD · copy the six lines below into every page (the inline script stops the phone menu flashing open) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 
-<header class="site">
-  <div class="wrap bar">
-    <a class="brand" href="index.html">Web<span>Forge</span></a>
-    <nav class="site" aria-label="Main">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="what-you-get.html">What you get</a></li>
-        <li><a href="work.html" aria-current="page">Work</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="start.html">Start</a></li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE HEADER · copy this block verbatim into every page.
+     The ONLY change per page: move aria-current="page" to that page's link.
+     (On the Styles link, leave it off — it is a spot on the home page.)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<header class="site-header surface-ink" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="index.html">
+      <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+      <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__bars" aria-hidden="true"></span><span data-nav-label>Menu</span></button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html"><span class="nav__no" aria-hidden="true">01</span>Home</a></li>
+        <li><a href="what-you-get.html"><span class="nav__no" aria-hidden="true">02</span>What you get</a></li>
+        <li><a href="index.html#styles" aria-current="page"><span class="nav__no" aria-hidden="true">03</span>Styles</a></li>
+        <li><a href="pricing.html"><span class="nav__no" aria-hidden="true">04</span>Pricing</a></li>
+        <li class="nav__start"><a class="btn btn--accent btn--sm" href="start.html"><span class="nav__no" aria-hidden="true">05</span>Start <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a></li>
       </ul>
     </nav>
   </div>
 </header>
+<!-- ═══════════════════════════ END SITE HEADER ═══════════════════════════ -->
 
 <main id="main">
 
-  <div class="wrap hero">
-    <p class="eyebrow">Work</p>
-    <h1>Concept builds, labeled honestly.</h1>
-    <p class="lede">
-      These are design demonstrations I built to show what I'd do for an organization like yours.
-      <em class="hl">They are not client projects, and the organizations shown are not customers.</em>
-    </p>
-    <div class="note">
-      <p>I could dress these up as a client roster. Plenty of people would. But you'd find out
-      eventually, and then nothing else I told you would be worth much.</p>
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero surface-ink" id="top" aria-labelledby="work-title" data-hero>
+    <canvas class="hero__lanes" aria-hidden="true"></canvas>
+    <div class="wrap hero__grid">
+      <p class="hero__meta mono"><span>Styles</span><span>Four live demos</span><span>One made-up club</span></p>
+
+      <h1 class="hero__title" id="work-title">
+        <span class="hero__line hero__line--1"><span class="hero__word">Four</span></span>
+        <span class="hero__line hero__line--2"><span class="hero__word">styles.</span></span>
+        <span class="hero__line hero__line--3"><span class="hero__word"><span class="zero__lit">Zero</span></span></span>
+        <span class="hero__line hero__line--4"><span class="hero__word">clones.</span></span>
+      </h1>
+
+      <div class="hero__aside">
+        <p class="hero__lede">One design system, four distinct styles — so no two clubs end up looking the same. Below are live demo sites for Copperline Athletics, <strong>a club I made up</strong>. Design demonstrations, <strong>not client projects</strong>.</p>
+        <div class="hero__ctas" data-hero-ctas>
+          <a class="btn btn--accent" href="#four">See all four <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          <a class="btn btn--ghost" href="start.html#check">Free site check</a>
+        </div>
+        <div class="check-card">
+          <p class="check-card__label mono"><span class="ping" aria-hidden="true"></span>Open a live demo · fictional club</p>
+          <ol class="check-card__list">
+            <li><span class="mono" aria-hidden="true">01</span><a href="demos/kinetic/index.html">Kinetic<span class="sr-only"> — live demo, fictional club</span></a></li>
+            <li><span class="mono" aria-hidden="true">02</span><a href="demos/cinematic/index.html">Cinematic<span class="sr-only"> — live demo, fictional club</span></a></li>
+            <li><span class="mono" aria-hidden="true">03</span><a href="demos/brightclub/index.html">Bright Club<span class="sr-only"> — live demo, fictional club</span></a></li>
+            <li><span class="mono" aria-hidden="true">04</span><a href="demos/precision/index.html">Precision<span class="sr-only"> — live demo, fictional club</span></a></li>
+          </ol>
+          <p class="check-card__foot mono">Same made-up club and programs in all four · the style changes</p>
+          <span class="check-card__scan" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TAPES ═══════════ -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--back surface-chalk"><div class="tape__lean"><div class="tape__track">
+      <span>Live demos</span><i></i><span>Fictional club</span><i></i><span>Not client work</span><i></i><span>Your content</span><i></i><span>Your colors</span><i></i><span>Live demos</span><i></i><span>Fictional club</span><i></i><span>Not client work</span><i></i><span>Your content</span><i></i><span>Your colors</span><i></i>
+      <span>Live demos</span><i></i><span>Fictional club</span><i></i><span>Not client work</span><i></i><span>Your content</span><i></i><span>Your colors</span><i></i><span>Live demos</span><i></i><span>Fictional club</span><i></i><span>Not client work</span><i></i><span>Your content</span><i></i><span>Your colors</span><i></i>
+    </div></div></div>
+    <div class="tape tape--front surface-accent"><div class="tape__lean"><div class="tape__track">
+      <span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Zero clones</span><i></i><span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Zero clones</span><i></i>
+      <span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Zero clones</span><i></i><span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Zero clones</span><i></i>
+    </div></div></div>
+  </div>
+
+  <!-- ═══════════ 01 · THE FOUR STYLES ═══════════ -->
+  <section class="styles styles--after-tapes surface-ink" id="four" aria-labelledby="four-title" data-styles>
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>01</b> The four styles</p>
+          <h2 class="sec-title" id="four-title" data-reveal>Pick a feel.<br><span class="hl">Click around.</span></h2>
+        </div>
+        <div class="sec-aside" data-reveal style="--i:1">
+          <p class="sec-lede">Each demo is a whole club site — programs, schedule, coaches, facility and a free-trial form. Open one on your phone. That’s where parents will meet yours.</p>
+          <div class="colorway" role="group" aria-labelledby="cw-label">
+            <p class="colorway__label mono" id="cw-label"><b>Try a club color.</b> This page and all four previews re-color.</p>
+            <div class="swatches">
+              <button type="button" class="swatch" data-colorway-btn="forge" aria-pressed="true"><i aria-hidden="true"></i>WebForge</button>
+              <button type="button" class="swatch" data-colorway-btn="volt" aria-pressed="false"><i aria-hidden="true"></i>Volt</button>
+              <button type="button" class="swatch" data-colorway-btn="royal" aria-pressed="false"><i aria-hidden="true"></i>Royal</button>
+              <button type="button" class="swatch" data-colorway-btn="kelly" aria-pressed="false"><i aria-hidden="true"></i>Kelly</button>
+              <button type="button" class="swatch" data-colorway-btn="flare" aria-pressed="false"><i aria-hidden="true"></i>Flare</button>
+            </div>
+            <p class="sr-only" aria-live="polite" data-colorway-status></p>
+          </div>
+        </div>
+      </header>
+
+      <p class="demo-note mono"><span class="demo-note__flag">Demo club</span><span>Every demo below is for <b>Copperline Athletics</b>, a made-up club. They show the styles. They are not client work.</span></p>
+
+      <ol class="style-lanes">
+        <!-- Kinetic -->
+        <li class="style-lane" id="kinetic" data-style="kinetic" data-reveal>
+          <span class="lane__no" aria-hidden="true">01</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Kinetic</h3>
+            <p class="style-lane__line">Athletic campaign energy. Big leaning type, scoreboard numbers, tapes that react to your scroll.</p>
+            <p class="style-lane__fit mono">Good fit · competitive clubs, speed &amp; strength</p>
+            <p class="style-lane__here mono">You’re looking at it — this page is Kinetic in <span data-colorway-name>WebForge orange</span>.</p>
+            <a class="style-lane__link" href="demos/kinetic/index.html">Open live demo<span class="sr-only"> of the Kinetic style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--kinetic" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mk-lines"></span>
+              <span class="mk-run mk-run--1"></span><span class="mk-run mk-run--2"></span>
+              <p class="mk-meta">Valley Park / Ages 8–18</p>
+              <p class="mk-head"><span class="mk-hollow">Faster.</span><span class="mk-solid">Stronger.</span><span class="mk-lit">Braver.</span></p>
+              <span class="mk-btn">Book a free trial</span>
+              <div class="mk-tape mk-tape--back"><div class="mk-track"><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span></div></div>
+              <div class="mk-tape"><div class="mk-track"><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span></div></div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Cinematic -->
+        <li class="style-lane" id="cinematic" data-style="cinematic" data-reveal>
+          <span class="lane__no" aria-hidden="true">02</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Cinematic</h3>
+            <p class="style-lane__line">Dark and filmic. Light, shadow and slow reveals — it feels directed, like the opening of a film.</p>
+            <p class="style-lane__fit mono">Good fit · elite programs, martial arts, a club with a story</p>
+            <a class="style-lane__link" href="demos/cinematic/index.html">Open live demo<span class="sr-only"> of the Cinematic style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--cinematic" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mc-light"></span>
+              <span class="mc-flare"></span>
+              <span class="mc-dust"></span>
+              <p class="mc-tc"><b></b>TC 00:00:12:04 · SC 01</p>
+              <p class="mc-title"><em>Copperline</em><span>Athletics · a training film</span></p>
+              <span class="mc-btn">Book a free trial</span>
+              <span class="mc-bars"></span>
+            </div>
+          </div>
+        </li>
+
+        <!-- Bright Club -->
+        <li class="style-lane" id="brightclub" data-style="brightclub" data-reveal>
+          <span class="lane__no" aria-hidden="true">03</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Bright Club</h3>
+            <p class="style-lane__line">Warm, friendly, colorful. Built for a parent on a phone, with nothing to wait for.</p>
+            <p class="style-lane__fit mono">Good fit · youth programs, gymnastics, first-timers</p>
+            <a class="style-lane__link" href="demos/brightclub/index.html">Open live demo<span class="sr-only"> of the Bright Club style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--bright" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <svg class="mb-wave" viewBox="0 0 160 100" preserveAspectRatio="none"><path d="M-10 78C30 40 64 96 104 60s44-30 66-34"/></svg>
+              <p class="mb-head">Where kids get good at <span class="mb-sticker">hard things.</span></p>
+              <span class="mb-btn">Book a free trial →</span>
+              <span class="mb-court"></span>
+              <span class="mb-ticket"><b>Free trial pass</b><span>Admit one athlete</span><i></i></span>
+              <span class="mb-burst"><b>8–18</b></span>
+            </div>
+          </div>
+        </li>
+
+        <!-- Precision -->
+        <li class="style-lane" id="precision" data-style="precision" data-reveal>
+          <span class="lane__no" aria-hidden="true">04</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Precision</h3>
+            <p class="style-lane__line">Sleek and minimal. A clean grid, a live “today” dial, and nothing extra.</p>
+            <p class="style-lane__fit mono">Good fit · training facilities, performance gyms, studios</p>
+            <a class="style-lane__link" href="demos/precision/index.html">Open live demo<span class="sr-only"> of the Precision style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--precision" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mp-grid"></span>
+              <p class="mp-meta">Youth training · ages 8–18</p>
+              <p class="mp-head">Get better on purpose<b>.</b></p>
+              <span class="mp-btn">Book a free trial</span>
+              <svg class="mp-dial" viewBox="0 0 120 120">
+                <circle class="mp-ticks" cx="60" cy="60" r="56" pathLength="120"/>
+                <circle class="mp-track" cx="60" cy="60" r="46"/>
+                <circle class="mp-arc mp-arc--ink" cx="60" cy="60" r="46" pathLength="100"/>
+                <circle class="mp-arc mp-arc--hot" cx="60" cy="60" r="46" pathLength="100"/>
+                <circle class="mp-face" cx="60" cy="60" r="34"/>
+                <text class="mp-t1" x="60" y="54">UP NEXT</text>
+                <text class="mp-t2" x="60" y="66">Speed</text>
+                <text class="mp-t3" x="60" y="76">4:30 PM</text>
+                <g class="mp-needle"><path d="M60 4v20"/><circle cx="60" cy="8" r="2.5"/></g>
+              </svg>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════ THE POINT ═══════════ -->
+  <div class="thesis surface-chalk">
+    <div class="wrap thesis__inner">
+      <p class="sec-index"><b>→</b> Why one club, four times</p>
+      <h2 class="thesis__title" data-reveal><span class="thesis__row">Same club.</span> <span class="thesis__row thesis__row--2">Four feels.</span></h2>
+      <div class="thesis__body" data-reveal style="--i:1">
+        <p class="thesis__quote">The club doesn’t change between the four demos. The feel does.</p>
+        <p>Same club, same three programs, same free-trial form — the style is what changes, along with the placeholder details. That’s the point: you pick how your club feels, and your information, your photos and your club’s colors go into it.</p>
+      </div>
     </div>
   </div>
 
-  <section class="band">
+  <!-- ═══════════ 02 · THINGS TO TRY ═══════════ -->
+  <section class="how surface-ink" id="try" aria-labelledby="try-title">
     <div class="wrap">
-      <p class="eyebrow">Demonstrations, not client projects</p>
-      <h2>Three concepts</h2>
-      <p class="small">
-        Organization names and identities are generic placeholders. Each concept was built to a real
-        brief — programs, seasons, schedules, the things a parent is actually looking for.
-      </p>
-
-      <div class="shots">
-        <div class="shot">
-          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="body">
-            <h3>A youth wrestling club</h3>
-            <p class="small">Concept build</p>
-            <p>Season schedule front and center, practice times readable in one glance on a phone,
-            and a single obvious place for a new family to ask about joining.</p>
-          </div>
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>02</b> Things to try</p>
+          <h2 class="sec-title" id="try-title" data-reveal>Don’t just look.<br><span class="hl">Poke at it.</span></h2>
         </div>
+        <p class="sec-lede" data-reveal style="--i:1">Each style has something it does that a screenshot can’t show. One thing to try in each.</p>
+      </header>
 
-        <div class="shot">
-          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="body">
-            <h3>A training facility</h3>
-            <p class="small">Concept build</p>
-            <p>Built around the two things these places actually get asked: what programs run when,
-            and how to book the space. Phone-only booking is the gap I kept finding.</p>
-          </div>
-        </div>
+      <ol class="steps">
+        <li class="step" data-reveal style="--i:0">
+          <span class="step__no" aria-hidden="true">01</span>
+          <p class="step__tag mono">Kinetic</p>
+          <h3 class="step__title"><a href="demos/kinetic/index.html">Scroll fast</a></h3>
+          <p class="step__text">The tapes and the running lanes behind the headline speed up and lean with your scroll. The footer swaps the whole site’s colorway.</p>
+        </li>
+        <li class="step" data-reveal style="--i:1">
+          <span class="step__no" aria-hidden="true">02</span>
+          <p class="step__tag mono">Cinematic</p>
+          <h3 class="step__title"><a href="demos/cinematic/index.html">Jump to a section</a></h3>
+          <p class="step__text">Use the menu: the page cuts like a film edit instead of gliding. The end credits have a color-grade switch.</p>
+        </li>
+        <li class="step" data-reveal style="--i:2">
+          <span class="step__no" aria-hidden="true">03</span>
+          <p class="step__tag mono">Bright Club</p>
+          <h3 class="step__title"><a href="demos/brightclub/index.html">Tear the ticket</a></h3>
+          <p class="step__text">Tap the free-trial pass and it tears off. Start the booking form and the pass fills in as you type.</p>
+        </li>
+        <li class="step" data-reveal style="--i:3">
+          <span class="step__no" aria-hidden="true">04</span>
+          <p class="step__tag mono">Precision</p>
+          <h3 class="step__title"><a href="demos/precision/index.html">Press G</a></h3>
+          <p class="step__text">A layout grid drops over the page so you can see the system underneath. On a phone, it’s the Layout grid button in the footer.</p>
+        </li>
+      </ol>
 
-        <div class="shot">
-          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="body">
-            <h3>A multi-sport academy</h3>
-            <p class="small">Concept build</p>
-            <p>Several programs under one roof without burying any of them. Clear paths for parents
-            who know what they want and parents who don't yet.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="note">
-        <p><em class="hl">Want to see one properly?</em> I'll walk you through a live concept on a
-        call, or build you a demo of your own organization for $19.99 so you can see your own content
-        in it before you decide anything. <a href="start.html">Ask me</a>.</p>
+      <div class="heads-up" role="note">
+        <p class="heads-up__stamp mono">Straight about the demos</p>
+        <p class="heads-up__text">Copperline Athletics is made up. The coaches, quotes, addresses and phone numbers are placeholders, and the forms in the demos <strong>don’t send anything</strong>. Want to see your own club in one of these styles? That’s the <a href="pricing.html">$19.99 demo</a>. The self-serve builder isn’t switched on yet, so for now you email me and I make it with you by hand.</p>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- ═══════════ 03 · FREE CHECK ═══════════ -->
+  <section class="cta-band surface-accent" id="check" aria-labelledby="check-title">
     <div class="wrap">
-      <p class="eyebrow">The audit</p>
-      <h2>The audit is the more useful thing.</h2>
-      <p class="lede">
-        Before I built any of these I went through 35 real club and facility sites in the area. 28
-        had something concretely wrong with them.
-      </p>
-      <div class="stats">
-        <div class="stat"><b>35</b><span>sites checked</span></div>
-        <div class="stat"><b>28</b><span>with real defects</span></div>
-        <div class="stat"><b>3</b><span>concept builds</span></div>
-        <div class="stat"><b>0</b><span>client projects</span></div>
-      </div>
-      <div class="note">
-        <p>It's a more honest sample of my work than a portfolio shot.</p>
+      <p class="sec-index"><b>03</b> Free, no obligation</p>
+      <h2 class="cta-band__title" id="check-title"><span class="cta-band__row">Free</span> <span class="cta-band__row cta-band__row--2">site</span> <span class="cta-band__row cta-band__row--3">check.</span></h2>
+      <div class="cta-band__grid">
+        <p class="cta-band__lede">Before you pick a style, find out what your current site is doing. Send me your club’s site and I’ll tell you what’s wrong with it: how it loads, how it behaves on a phone, whether your domain is actually resolving, and what a parent sees first.</p>
+        <div class="cta-band__act">
+          <a class="btn btn--accent btn--lg" href="start.html#check">Get your site checked, free <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          <p class="cta-band__note mono">Useful whether or not you ever hire me.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="band-signal">
+  <!-- ═══════════ STILL DECIDING ═══════════ -->
+  <section class="founder surface-ink-2" id="ask" aria-labelledby="ask-title">
     <div class="wrap">
-      <p class="eyebrow">No charge, no obligation</p>
-      <h2>I'll do the same for yours.</h2>
-      <p class="lede">
-        I'll send you what I find — the loading speed, how it behaves on a phone, whether your domain
-        is actually resolving, what a parent sees first.
-      </p>
-      <div class="note">
-        <p><strong>It's useful to you whether or not you ever hire me.</strong></p>
-      </div>
-      <div class="actions">
-        <a class="btn btn-primary" href="start.html">Ask for the audit</a>
+      <div class="founder__body">
+        <p class="sec-index"><b>→</b> Still deciding</p>
+        <h2 class="sec-title founder__title" id="ask-title" data-reveal>Not sure which one fits?</h2>
+        <p class="founder__lede" data-reveal style="--i:1">Email me what your club does and who it serves, and I’ll tell you which of the four I’d start from — and why. No call needed.</p>
+        <div class="founder__ctas">
+          <a class="btn btn--accent" href="mailto:connect@webforgecreate.org">Email me about your club</a>
+          <p class="founder__mail">Or write to <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap rows">
-    <div>
-      <p class="mark">Web<span>Forge</span></p>
-      <p>St. Louis, Missouri</p>
-      <p><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE FOOTER · copy this block verbatim into every page. No changes.
+     The two honesty lines (AI use, no tracking) must stay word for word.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer surface-deep">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+          <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+        </a>
+        <p class="footer__line">Websites for youth sports clubs, training facilities and studios. One person, in St.&nbsp;Louis, Missouri.</p>
+        <p class="footer__mail"><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="what-you-get.html">What you get</a>
+        <a href="index.html#styles">Styles</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="start.html">Start</a>
+      </nav>
     </div>
-    <div>
-      <p>I use AI tools in my work. I'm responsible for reviewing and delivering everything I hand over.</p>
+    <p class="footer__word" aria-hidden="true">WebForge</p>
+  </div>
+  <div class="footer__meta">
+    <div class="wrap footer__meta-inner">
+      <p>I use AI tools in my work. I’m responsible for reviewing and delivering everything I hand over.</p>
       <p>No tracking, no cookies, no analytics on this site.</p>
+      <p class="mono">© 2026 WebForge · Gavin Reidel</p>
     </div>
   </div>
 </footer>
+<!-- ═══════════════════════════ END SITE FOOTER ═══════════════════════════ -->
+
+<!-- Phone action bar · shows once the hero buttons scroll away -->
+<div class="action-bar surface-ink" data-action-bar>
+  <a class="btn btn--ghost" href="#four">The four</a>
+  <a class="btn btn--accent" href="start.html#check">Free site check</a>
+</div>
 
 </body>
 </html>

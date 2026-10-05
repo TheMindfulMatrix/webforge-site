@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kinetic style demo · Copperline Athletics (fictional club) · WebForge</title>
+<meta name="description" content="Copperline Athletics is an 18,500 sq ft youth training facility in Valley Park, Missouri for athletes ages 8–18 — youth wrestling, club volleyball and speed & agility. Your first session is free. A WebForge style demo for a fictional club.">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230A0A0B'/%3E%3Cpath d='M15 6h21l-9 28H6z' fill='%23D4FF1E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- Glyph sprite: one line-drawn mark per sport, reused by filters + schedule -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="g-wrestling" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="g-volleyball" viewBox="0 0 24 24"><path d="M2 14h20M4 14v8M20 14v8"/><circle cx="15" cy="6" r="3.5"/></symbol>
+  <symbol id="g-speed" viewBox="0 0 24 24"><path d="M2 7h20M2 17h20M7 7v10M12 7v10M17 7v10"/></symbol>
+  <symbol id="g-arrow" viewBox="0 0 20 12"><path d="M0 6h17M12 1l5 5-5 5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<!-- WF-DEMO-RIBBON:START · added by WebForge when publishing the demo. Self-contained: it does not
+     use this style's CSS or JS, and it is not part of the style's design. It sits at the bottom, and on phones
+     it lifts itself above the style's own action bar so it never covers the "Book a free trial" button. -->
+<style>
+#wf-ribbon, #wf-ribbon p, #wf-ribbon a, #wf-ribbon b, #wf-ribbon span { all: revert; box-sizing: border-box; }
+#wf-ribbon {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147483000;
+  display: flex; align-items: center; justify-content: space-between; gap: 4px 14px;
+  margin: 0; padding: 4px max(14px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  background: rgba(10, 10, 11, 0.96); color: #F2F0E9; border-top: 2px solid #FF5B1F;
+  font: 600 12px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.01em; text-align: left; text-transform: none; font-style: normal;
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+}
+#wf-ribbon p { display: flex; align-items: center; gap: 9px; min-width: 0; margin: 0; font: inherit; color: inherit; }
+#wf-ribbon .wf-ribbon__mark { display: block; flex: none; width: 19px; height: 16px; max-width: none; overflow: visible; }
+#wf-ribbon b { font-weight: 800; color: #F2F0E9; }
+#wf-ribbon .wf-ribbon__dim { color: #B9B6AC; font-weight: 600; white-space: nowrap; }
+#wf-ribbon a {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 2px;
+  color: #F2F0E9; font: inherit; font-weight: 800; white-space: nowrap; cursor: pointer;
+  text-decoration: underline; text-decoration-color: #FF5B1F; text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+#wf-ribbon a:hover { color: #FF5B1F; }
+#wf-ribbon a:focus { outline: none; }
+#wf-ribbon a:focus-visible { outline: 2px solid #FF5B1F; outline-offset: 2px; color: #F2F0E9; }
+#wf-ribbon .wf-ribbon__arrow { font-weight: 800; }
+@media (max-width: 420px) { #wf-ribbon { font-size: 11.5px; gap: 4px 10px; padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); } #wf-ribbon p { gap: 7px; } }
+@media (max-width: 360px) { #wf-ribbon { font-size: 11px; } #wf-ribbon .wf-ribbon__mark { display: none; } }
+@media print { #wf-ribbon, #wf-ribbon-space { display: none; } }
+</style>
+<aside id="wf-ribbon" aria-label="About this page">
+  <p><svg class="wf-ribbon__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path d="M12 0h32L32 36H0z" fill="#FF5B1F"/><path d="M10 9l5 18 6-12 6 12 9-20" fill="none" stroke="#0A0A0B" stroke-width="3.6"/></svg><span><b>WebForge style demo:</b> Kinetic <span class="wf-ribbon__dim">· Fictional club</span></span></p>
+  <a href="../../index.html#styles"><span class="wf-ribbon__arrow" aria-hidden="true">←</span> Back to WebForge</a>
+</aside>
+<script>
+(function () {
+  'use strict';
+  var rib = document.getElementById('wf-ribbon');
+  if (!rib) return;
+  var BARS = '.action-bar';
+  var root = document.documentElement;
+  var bars = []; var space = null; var until = 0; var raf = 0; var lastLift = -1; var lastH = -1;
+  /* how far the style's own bottom bar reaches up into the viewport (0 if hidden) */
+  function reach() {
+    var vh = window.innerHeight; var out = 0;
+    for (var i = 0; i < bars.length; i++) {
+      var cs = window.getComputedStyle(bars[i]);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      var r = bars[i].getBoundingClientRect();
+      if (r.height > 0 && r.top < vh && r.bottom > vh - 48) out = Math.max(out, vh - r.top + (r.bottom < vh - 2 ? 6 : 0));
+    }
+    return Math.max(0, Math.round(out));
+  }
+  function apply() {
+    var l = bars.length ? reach() : 0;
+    if (l !== lastLift) { rib.style.transform = l ? 'translateY(' + (-l) + 'px)' : ''; lastLift = l; }
+    var h = rib.offsetHeight;
+    if (h !== lastH) {
+      lastH = h;
+      if (space) space.style.height = h + 'px';
+      root.style.scrollPaddingBottom = (h + 12) + 'px';
+    }
+  }
+  function tick() { apply(); raf = Date.now() < until ? window.requestAnimationFrame(tick) : 0; }
+  function burst(ms) { until = Math.max(until, Date.now() + ms); if (!raf) raf = window.requestAnimationFrame(tick); }
+  function init() {
+    space = document.getElementById('wf-ribbon-space');
+    if (space) {
+      var foot = document.querySelector('body > footer') || document.querySelector('footer:last-of-type');
+      var bg = foot ? window.getComputedStyle(foot).backgroundColor : '';
+      if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') space.style.backgroundColor = bg;
+    }
+    bars = BARS ? Array.prototype.slice.call(document.querySelectorAll(BARS)) : [];
+    if (bars.length && window.MutationObserver) {
+      var mo = new MutationObserver(function () { burst(900); });
+      bars.forEach(function (b) { mo.observe(b, { attributes: true, attributeFilter: ['class', 'style', 'hidden'] }); });
+    }
+    bars.forEach(function (b) { b.addEventListener('transitionrun', function () { burst(900); }); });
+    window.addEventListener('scroll', function () { burst(700); }, { passive: true });
+    window.addEventListener('resize', function () { burst(500); }, { passive: true });
+    window.addEventListener('load', function () { burst(1500); });
+    burst(1500);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- WF-DEMO-RIBBON:END -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="site-header surface-ink" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="#top">
+      <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false">
+        <path class="brand__slab" d="M12 0h32L32 36H0z"/>
+        <path class="brand__bend" d="M6 28c10 0 12-5 15-11s7-10 17-10"/>
+      </svg>
+      <span class="brand__word"><span class="brand__name">Copperline</span><span class="brand__sub">Athletics</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__bars" aria-hidden="true"></span><span data-nav-label>Menu</span></button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#programs"><span class="nav__no" aria-hidden="true">01</span>Programs</a></li>
+        <li><a href="#schedule"><span class="nav__no" aria-hidden="true">02</span>Schedule</a></li>
+        <li><a href="#coaches"><span class="nav__no" aria-hidden="true">03</span>Coaches</a></li>
+        <li><a href="#facility"><span class="nav__no" aria-hidden="true">04</span>Facility</a></li>
+        <li><a href="#visit"><span class="nav__no" aria-hidden="true">05</span>Visit</a></li>
+        <li class="nav__cta"><a class="btn btn--accent" href="#trial">Book a free trial <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm site-header__cta" href="#trial">Book a free trial</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero surface-ink" id="top" aria-labelledby="hero-title" data-hero>
+    <canvas class="hero__lanes" aria-hidden="true"></canvas>
+    <div class="wrap hero__grid">
+      <p class="hero__meta mono"><span>Valley Park, MO</span><span>Ages 8–18</span><span>Est. 2015</span></p>
+
+      <h1 class="hero__title" id="hero-title">
+        <span class="sr-only">Copperline Athletics — </span>
+        <span class="hero__line hero__line--1"><span class="hero__word" style="--i:0">Faster.</span></span>
+        <span class="hero__line hero__line--2"><span class="hero__word" style="--i:1">Stronger.</span></span>
+        <span class="hero__line hero__line--3"><span class="hero__word" style="--i:2"><span class="hero__tag">Braver.</span></span></span>
+      </h1>
+
+      <div class="hero__aside">
+        <p class="hero__lede">Copperline is an 18,500&nbsp;sq&nbsp;ft training facility in Valley Park for athletes <strong>ages&nbsp;8&nbsp;to&nbsp;18</strong>. Youth wrestling, club volleyball and speed&nbsp;&amp;&nbsp;agility — under one roof, coached by people who’ve competed.</p>
+        <div class="hero__ctas" data-hero-ctas>
+          <a class="btn btn--accent" href="#trial">Book a free trial <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></a>
+          <a class="btn btn--ghost" href="#schedule">See the schedule</a>
+        </div>
+        <a class="next-up" href="#schedule" data-next-up>
+          <span class="next-up__label mono"><span class="next-up__dot" aria-hidden="true"></span><span data-next-label>This week at Copperline</span></span>
+          <span class="next-up__what" data-next-what>17 sessions a week</span>
+          <span class="next-up__age" data-next-age>Monday to Saturday, ages 8–18</span>
+          <span class="next-up__when mono" data-next-when>Full schedule below</span>
+          <svg class="next-up__go" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="hero__coords mono" aria-hidden="true">38.55° N — 90.49° W · Nine lanes · One standard</p>
+  </section>
+
+  <!-- ═══════════ TAPES ═══════════ -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--back"><div class="tape__lean"><div class="tape__track">
+      <span>First session free</span><i></i><span>Ages 8–18</span><i></i><span>No experience needed</span><i></i><span>Valley Park, MO</span><i></i><span>First session free</span><i></i><span>Ages 8–18</span><i></i><span>No experience needed</span><i></i><span>Valley Park, MO</span><i></i>
+      <span>First session free</span><i></i><span>Ages 8–18</span><i></i><span>No experience needed</span><i></i><span>Valley Park, MO</span><i></i><span>First session free</span><i></i><span>Ages 8–18</span><i></i><span>No experience needed</span><i></i><span>Valley Park, MO</span><i></i>
+    </div></div></div>
+    <div class="tape tape--front"><div class="tape__lean"><div class="tape__track">
+      <span>Youth Wrestling</span><i></i><span>Club Volleyball</span><i></i><span>Speed &amp; Agility</span><i></i><span>Youth Wrestling</span><i></i><span>Club Volleyball</span><i></i><span>Speed &amp; Agility</span><i></i>
+      <span>Youth Wrestling</span><i></i><span>Club Volleyball</span><i></i><span>Speed &amp; Agility</span><i></i><span>Youth Wrestling</span><i></i><span>Club Volleyball</span><i></i><span>Speed &amp; Agility</span><i></i>
+    </div></div></div>
+  </div>
+
+  <!-- ═══════════ PROGRAMS ═══════════ -->
+  <section class="programs surface-ink" id="programs" aria-labelledby="programs-title">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>01</b> Programs</p>
+          <h2 class="sec-title" id="programs-title" data-reveal>Three lanes.<br>One standard.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:2">Every program runs year-round in 10-week blocks. Join any week — the first session is free, and nobody gets put on the spot.</p>
+      </header>
+
+      <ol class="lanes">
+        <li class="lane" data-reveal style="--i:0">
+          <span class="lane__no" aria-hidden="true">01</span>
+          <div class="lane__head">
+            <h3 class="lane__name">Youth Wrestling</h3>
+            <p class="lane__ages mono">Ages 8–18 · two age groups</p>
+          </div>
+          <div class="lane__body">
+            <p class="lane__builds">Builds balance, hand-fighting and the kind of grit that shows up in every other sport they play.</p>
+            <a class="lane__link" href="#schedule" data-filter-link="wrestling">Wrestling times<span class="sr-only"> in the weekly schedule</span> <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></a>
+          </div>
+          <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+            <path pathLength="1" d="M2 50h20M138 50h20"/>
+            <circle pathLength="1" cx="80" cy="50" r="44"/>
+            <circle class="art-core" pathLength="1" cx="80" cy="50" r="12"/>
+            <path class="art-hands" pathLength="1" d="M62 38v24M98 38v24"/>
+          </svg>
+        </li>
+        <li class="lane" data-reveal style="--i:1">
+          <span class="lane__no" aria-hidden="true">02</span>
+          <div class="lane__head">
+            <h3 class="lane__name">Club Volleyball</h3>
+            <p class="lane__ages mono">Ages 10–18 · 12U to 18U teams</p>
+          </div>
+          <div class="lane__body">
+            <p class="lane__builds">Builds first-contact passing, quick feet and the habit of talking on the court — teams that talk, win.</p>
+            <a class="lane__link" href="#schedule" data-filter-link="volleyball">Volleyball times<span class="sr-only"> in the weekly schedule</span> <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></a>
+          </div>
+          <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+            <path pathLength="1" d="M8 96h144"/>
+            <path pathLength="1" d="M80 96V44M72 44h16"/>
+            <path pathLength="1" d="M24 70C40 18 92 4 126 30"/>
+            <circle class="art-ball" pathLength="1" cx="128" cy="32" r="9"/>
+          </svg>
+        </li>
+        <li class="lane" data-reveal style="--i:2">
+          <span class="lane__no" aria-hidden="true">03</span>
+          <div class="lane__head">
+            <h3 class="lane__name">Speed &amp; Agility</h3>
+            <p class="lane__ages mono">Ages 8–18 · all sports</p>
+          </div>
+          <div class="lane__body">
+            <p class="lane__builds">Builds how to land, brake, cut and accelerate safely — the mechanics behind getting faster at anything.</p>
+            <a class="lane__link" href="#schedule" data-filter-link="speed">Speed &amp; agility times<span class="sr-only"> in the weekly schedule</span> <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></a>
+          </div>
+          <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+            <path pathLength="1" d="M6 30h148M6 70h148"/>
+            <path pathLength="1" d="M26 30v40M50 30v40M74 30v40M98 30v40M122 30v40M146 30v40"/>
+            <path class="art-feet" pathLength="1" d="M8 50l14-12 14 24 14-24 14 24 14-24 14 24 14-24 14 24 14-24 12 12"/>
+          </svg>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════ STATS ═══════════ -->
+  <section class="stats surface-accent" aria-labelledby="stats-title">
+    <div class="wrap">
+      <p class="stats__eyebrow mono"><span id="stats-title">Copperline, by the numbers</span><span>Fall 2026</span></p>
+      <ul class="stats__list">
+        <li class="stat" data-reveal style="--i:0">
+          <p class="stat__num"><span data-odometer>340</span><span class="stat__suffix" aria-hidden="true">+</span></p>
+          <p class="stat__label">Athletes training each week<span>From first-timers to state qualifiers.</span></p>
+        </li>
+        <li class="stat" data-reveal style="--i:1">
+          <p class="stat__num"><span data-odometer>11</span></p>
+          <p class="stat__label">Years open<span>Same building, same owners, since 2015.</span></p>
+        </li>
+        <li class="stat" data-reveal style="--i:2">
+          <p class="stat__num"><span data-odometer>14</span></p>
+          <p class="stat__label">Coaches on staff<span>Every one background-checked and CPR certified.</span></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════ SCHEDULE ═══════════ -->
+  <section class="schedule surface-chalk" id="schedule" aria-labelledby="schedule-title">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>02</b> Weekly schedule</p>
+          <h2 class="sec-title" id="schedule-title" data-reveal>The week.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:2">Fall block runs <strong>Sep&nbsp;8 – Dec&nbsp;13</strong>. Same times every week, Sundays off. For a first session, arrive ten minutes early — we’ll meet you at the front desk.</p>
+      </header>
+
+      <div class="sched-bar">
+        <div class="filters" role="group" aria-label="Show sessions for">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="wrestling" aria-pressed="false"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Wrestling</button>
+          <button class="chip" type="button" data-filter="volleyball" aria-pressed="false"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Volleyball</button>
+          <button class="chip" type="button" data-filter="speed" aria-pressed="false"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed</button>
+        </div>
+        <p class="sched-note mono"><b>PM</b> unless marked · 60–90 min sessions</p>
+        <div class="daypick" role="group" aria-label="Choose a day" data-daypick>
+          <button type="button" data-pick="1" aria-pressed="false">Mon<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="2" aria-pressed="false">Tue<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="3" aria-pressed="false">Wed<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="4" aria-pressed="false">Thu<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="5" aria-pressed="false">Fri<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="6" aria-pressed="false">Sat<span class="daypick__dot"></span></button>
+          <button type="button" data-pick="0" aria-pressed="false">Sun<span class="daypick__dot"></span></button>
+        </div>
+      </div>
+
+      <div class="week" data-week>
+        <section class="day" data-day="1" aria-labelledby="d1">
+          <header class="day__head"><h3 class="day__name" id="d1">Monday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="speed" data-start="16:30" data-end="17:30"><p class="session__time">4:30–5:30<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed &amp; Agility</p><p class="session__age">Ages 8–12</p></li>
+            <li class="session" data-program="wrestling" data-start="17:45" data-end="19:00"><p class="session__time">5:45–7:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Ages 8–13</p></li>
+            <li class="session" data-program="wrestling" data-start="19:15" data-end="20:45"><p class="session__time">7:15–8:45<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Ages 14–18</p></li>
+          </ul>
+        </section>
+        <section class="day" data-day="2" aria-labelledby="d2">
+          <header class="day__head"><h3 class="day__name" id="d2">Tuesday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="volleyball" data-start="16:30" data-end="18:00"><p class="session__time">4:30–6:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">12U · ages 10–12</p></li>
+            <li class="session" data-program="volleyball" data-start="18:00" data-end="19:30"><p class="session__time">6:00–7:30<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">14U · ages 13–14</p></li>
+            <li class="session" data-program="volleyball" data-start="19:30" data-end="21:00"><p class="session__time">7:30–9:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">16U–18U · ages 15–18</p></li>
+          </ul>
+        </section>
+        <section class="day" data-day="3" aria-labelledby="d3">
+          <header class="day__head"><h3 class="day__name" id="d3">Wednesday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="speed" data-start="16:30" data-end="17:30"><p class="session__time">4:30–5:30<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed &amp; Agility</p><p class="session__age">Ages 13–18</p></li>
+            <li class="session" data-program="wrestling" data-start="17:45" data-end="19:00"><p class="session__time">5:45–7:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Ages 8–13</p></li>
+            <li class="session" data-program="wrestling" data-start="19:15" data-end="20:45"><p class="session__time">7:15–8:45<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Ages 14–18</p></li>
+          </ul>
+        </section>
+        <section class="day" data-day="4" aria-labelledby="d4">
+          <header class="day__head"><h3 class="day__name" id="d4">Thursday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="volleyball" data-start="16:30" data-end="18:00"><p class="session__time">4:30–6:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">12U · ages 10–12</p></li>
+            <li class="session" data-program="volleyball" data-start="18:00" data-end="19:30"><p class="session__time">6:00–7:30<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">14U · ages 13–14</p></li>
+            <li class="session" data-program="volleyball" data-start="19:30" data-end="21:00"><p class="session__time">7:30–9:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">16U–18U · ages 15–18</p></li>
+          </ul>
+        </section>
+        <section class="day" data-day="5" aria-labelledby="d5">
+          <header class="day__head"><h3 class="day__name" id="d5">Friday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="speed" data-start="16:30" data-end="17:30"><p class="session__time">4:30–5:30<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed &amp; Agility</p><p class="session__age">All ages, 8–18</p></li>
+            <li class="session" data-program="wrestling" data-start="17:45" data-end="19:15"><p class="session__time">5:45–7:15<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Open mat · ages 10–18</p></li>
+          </ul>
+        </section>
+        <section class="day" data-day="6" aria-labelledby="d6">
+          <header class="day__head"><h3 class="day__name" id="d6">Saturday</h3></header>
+          <ul class="day__list">
+            <li class="session" data-program="speed" data-start="9:00" data-end="10:30"><p class="session__time">9:00–10:30 AM<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed &amp; Agility</p><p class="session__age">Saturday Speed Lab · 8–18</p></li>
+            <li class="session" data-program="volleyball" data-start="10:45" data-end="12:15"><p class="session__time">10:45 AM–12:15<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Club Volleyball</p><p class="session__age">Skills clinic · ages 10–18</p></li>
+            <li class="session" data-program="wrestling" data-start="12:30" data-end="14:00"><p class="session__time">12:30–2:00<span class="session__flag mono"></span></p><p class="session__prog"><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Youth Wrestling</p><p class="session__age">Technique · ages 8–18</p></li>
+          </ul>
+        </section>
+        <section class="day day--off" data-day="0" aria-labelledby="d0">
+          <header class="day__head"><h3 class="day__name" id="d0">Sunday</h3></header>
+          <p class="day__off"><strong>Closed — recovery day.</strong>Sleep in. Eat something green. See you Monday.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ COACHES ═══════════ -->
+  <section class="coaches surface-ink" id="coaches" aria-labelledby="coaches-title">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>03</b> Coaches</p>
+          <h2 class="sec-title" id="coaches-title" data-reveal>Coaches who’ve been there.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:2">Fourteen coaches on staff. These three run the programs — and you’ll see them on the floor, not in an office.</p>
+      </header>
+
+      <ol class="roster">
+        <li class="coach" data-reveal style="--i:0">
+          <figure class="photo-slot">
+            <span class="photo-slot__initials" aria-hidden="true">MD</span>
+            <figcaption class="photo-slot__tag mono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo slot · 4:5 · </span>Coach photo</figcaption>
+          </figure>
+          <div class="coach__body">
+            <p class="coach__meta mono">#01 — Wrestling</p>
+            <h3 class="coach__name">Marcus Delaney</h3>
+            <p class="coach__role mono">Head Wrestling Coach</p>
+          </div>
+          <p class="coach__line">Two-time state placer who drills the basics until they’re automatic — then makes them fast.</p>
+        </li>
+        <li class="coach" data-reveal style="--i:1">
+          <figure class="photo-slot">
+            <span class="photo-slot__initials" aria-hidden="true">TO</span>
+            <figcaption class="photo-slot__tag mono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo slot · 4:5 · </span>Coach photo</figcaption>
+          </figure>
+          <div class="coach__body">
+            <p class="coach__meta mono">#02 — Volleyball</p>
+            <h3 class="coach__name">Tessa Okafor</h3>
+            <p class="coach__role mono">Club Volleyball Director</p>
+          </div>
+          <p class="coach__line">Grew 14U from one team to five. Will happily talk your ear off about first-contact passing.</p>
+        </li>
+        <li class="coach" data-reveal style="--i:2">
+          <figure class="photo-slot">
+            <span class="photo-slot__initials" aria-hidden="true">JR</span>
+            <figcaption class="photo-slot__tag mono"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo slot · 4:5 · </span>Coach photo</figcaption>
+          </figure>
+          <div class="coach__body">
+            <p class="coach__meta mono">#03 — Speed</p>
+            <h3 class="coach__name">Jordan Reyes</h3>
+            <p class="coach__role mono">Speed &amp; Agility Lead · CSCS</p>
+          </div>
+          <p class="coach__line">Teaches kids to land, brake and change direction before he ever asks them to sprint.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══════════ FACILITY ═══════════ -->
+  <section class="facility surface-ink surface-ink-2" id="facility" aria-labelledby="facility-title">
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>04</b> The facility</p>
+          <h2 class="sec-title" id="facility-title" data-reveal><span class="sqft">18,500</span> sq&nbsp;ft. One roof.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:2">Climate-controlled, 24-foot ceilings, and a mezzanine so parents can watch without hovering. Pick a zone to find it on the plan.</p>
+      </header>
+
+      <div class="facility__grid">
+        <figure class="plan" data-plan data-reveal>
+          <svg class="plan__svg" viewBox="0 0 1000 620" role="img" aria-labelledby="plan-t plan-d">
+            <title id="plan-t">Copperline Athletics floor plan</title>
+            <desc id="plan-d">Two volleyball courts fill the east half. The wrestling room and strength area sit in the north-west, a 45-yard turf lane runs across the middle, and the lobby and parent mezzanine are by the south entrance.</desc>
+
+            <!-- 1 · courts -->
+            <g class="zone" data-zone="courts">
+              <rect class="zone__fill" x="510" y="16" width="474" height="588"/>
+              <path class="ln draw" style="--d:2" pathLength="1" d="M540 56h400v200H540zM740 56v200M673 56v200M807 56v200"/>
+              <path class="ln draw" style="--d:3" pathLength="1" d="M540 364h400v200H540zM740 364v200M673 364v200M807 364v200"/>
+              <path class="ln ln--soft draw" style="--d:4" pathLength="1" d="M740 40v232M740 348v232"/>
+              <circle class="badge" cx="560" cy="310" r="24"/><text class="badge__no" x="560" y="311">1</text>
+              <text class="plan__label" x="600" y="316">Courts · 2 full</text>
+            </g>
+            <!-- 2 · wrestling -->
+            <g class="zone" data-zone="wrestling">
+              <rect class="zone__fill" x="16" y="16" width="304" height="286"/>
+              <path class="ln ln--soft draw" style="--d:1" pathLength="1" d="M40 40h256v240H40z"/>
+              <circle class="ln draw" style="--d:2" pathLength="1" cx="168" cy="160" r="98"/>
+              <circle class="ln draw" style="--d:3" pathLength="1" cx="168" cy="160" r="14"/>
+              <path class="ln draw" style="--d:4" pathLength="1" d="M156 146v28M180 146v28"/>
+              <circle class="badge" cx="60" cy="60" r="24"/><text class="badge__no" x="60" y="61">2</text>
+              <text class="plan__label" x="40" y="296" dy="-4">Mat room</text>
+            </g>
+            <!-- 3 · strength -->
+            <g class="zone" data-zone="strength">
+              <rect class="zone__fill" x="326" y="16" width="178" height="286"/>
+              <path class="ln draw" style="--d:2" pathLength="1" d="M346 44h48v70h-48zM436 44h48v70h-48z"/>
+              <path class="ln ln--soft draw" style="--d:3" pathLength="1" d="M346 150h138M346 176h138"/>
+              <path class="ln draw" style="--d:4" pathLength="1" d="M346 214h30v30h-30zM392 214h30v30h-30zM438 214h30v30h-30z"/>
+              <circle class="badge" cx="476" cy="276" r="24"/><text class="badge__no" x="476" y="277">3</text>
+              <text class="plan__label" x="346" y="282">Strength</text>
+            </g>
+            <!-- 4 · turf -->
+            <g class="zone" data-zone="turf">
+              <rect class="zone__fill" x="16" y="308" width="488" height="104"/>
+              <path class="ln draw" style="--d:2" pathLength="1" d="M30 322h460v76H30z"/>
+              <path class="ln ln--soft draw" style="--d:3" pathLength="1" d="M81 322v76M132 322v76M183 322v76M234 322v76M285 322v76M336 322v76M387 322v76M438 322v76"/>
+              <path class="ln draw" style="--d:5" pathLength="1" d="M60 348l10 12-10 12M76 348l10 12-10 12M92 348l10 12-10 12"/>
+              <circle class="badge" cx="466" cy="360" r="24"/><text class="badge__no" x="466" y="361">4</text>
+              <text class="plan__label" x="120" y="366">Turf lane · 45 yd</text>
+            </g>
+            <!-- 5 · mezzanine -->
+            <g class="zone" data-zone="mezz">
+              <rect class="zone__fill" x="262" y="418" width="242" height="186"/>
+              <path class="ln ln--dash draw" pathLength="1" d="M280 436h206v150H280z"/>
+              <path class="ln ln--soft draw" style="--d:4" pathLength="1" d="M300 470h40v20h-40zM360 470h40v20h-40zM300 520h40v20h-40zM360 520h40v20h-40z"/>
+              <circle class="badge" cx="466" cy="464" r="24"/><text class="badge__no" x="466" y="465">5</text>
+              <text class="plan__label" x="300" y="574">Mezzanine ↑</text>
+            </g>
+            <!-- 6 · lobby -->
+            <g class="zone" data-zone="lobby">
+              <rect class="zone__fill" x="16" y="418" width="240" height="186"/>
+              <path class="ln draw" style="--d:3" pathLength="1" d="M40 446h120v34H40z"/>
+              <path class="ln draw" style="--d:5" pathLength="1" d="M200 600v-56M186 558l14-14 14 14"/>
+              <circle class="badge" cx="60" cy="560" r="24"/><text class="badge__no" x="60" y="561">6</text>
+              <text class="plan__label" x="40" y="512">Lobby · check-in</text>
+            </g>
+
+            <!-- shell walls, entrance gap on the south wall -->
+            <path class="wall draw" style="--d:0" pathLength="1" d="M228 610H990V10H10V610H172"/>
+            <path class="ln ln--soft draw" style="--d:1" pathLength="1" d="M10 304h500M10 414h500M507 10v600M258 414v196M323 10v294"/>
+          </svg>
+          <figcaption class="plan__cap mono"><span>Plan not to scale</span><span>Entrance · south wall, by the drop-off lane</span></figcaption>
+        </figure>
+
+        <ol class="zones" aria-label="Facility zones">
+          <li><button type="button" class="zone-btn" data-zone-btn="courts" aria-pressed="false"><span class="zone-btn__no">1</span><span class="zone-btn__name">Volleyball courts</span><span class="zone-btn__size mono">8,200 ft²</span><span class="zone-btn__desc">Two full courts on sport-court flooring, 24-ft ceilings.</span></button></li>
+          <li><button type="button" class="zone-btn" data-zone-btn="wrestling" aria-pressed="false"><span class="zone-btn__no">2</span><span class="zone-btn__name">Wrestling room</span><span class="zone-btn__size mono">2,600 ft²</span><span class="zone-btn__desc">Wall-to-wall mat with a full 42-ft competition circle.</span></button></li>
+          <li><button type="button" class="zone-btn" data-zone-btn="strength" aria-pressed="false"><span class="zone-btn__no">3</span><span class="zone-btn__name">Strength &amp; mobility</span><span class="zone-btn__size mono">2,400 ft²</span><span class="zone-btn__desc">Racks, sleds and plyo boxes sized for younger athletes.</span></button></li>
+          <li><button type="button" class="zone-btn" data-zone-btn="turf" aria-pressed="false"><span class="zone-btn__no">4</span><span class="zone-btn__name">Turf sprint lane</span><span class="zone-btn__size mono">2,000 ft²</span><span class="zone-btn__desc">45 yards of turf with laser timing gates.</span></button></li>
+          <li><button type="button" class="zone-btn" data-zone-btn="mezz" aria-pressed="false"><span class="zone-btn__no">5</span><span class="zone-btn__name">Parent mezzanine</span><span class="zone-btn__size mono">1,300 ft²</span><span class="zone-btn__desc">Upstairs, overlooking both courts. Wi-Fi and homework tables.</span></button></li>
+          <li><button type="button" class="zone-btn" data-zone-btn="lobby" aria-pressed="false"><span class="zone-btn__no">6</span><span class="zone-btn__name">Lobby &amp; locker rooms</span><span class="zone-btn__size mono">2,000 ft²</span><span class="zone-btn__desc">Check-in desk, restrooms, water-bottle station.</span></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ QUOTE ═══════════ -->
+  <section class="quote surface-chalk" aria-labelledby="quote-title">
+    <div class="wrap quote__inner">
+      <h2 class="sr-only" id="quote-title">From a Copperline family</h2>
+      <p class="quote__stamp"><span class="quote__stamp-big">Sample</span><span class="mono">Your families’ words go here</span></p>
+      <figure class="quote__fig" data-reveal>
+        <svg class="quote__mark" viewBox="0 0 120 70" aria-hidden="true" focusable="false"><path d="M30 0h28L34 70H6z"/><path d="M82 0h28L86 70H58z"/></svg>
+        <blockquote class="quote__text">
+          <p>She walked in at twelve and wouldn’t call for the ball. Eight months later she’s <mark>the loudest kid on the court</mark> — and she’s the one asking to leave early so she can warm up.</p>
+        </blockquote>
+        <figcaption class="quote__by mono">Parent of a 14U volleyball athlete · sample quote, not a real review</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRIAL + VISIT ═══════════ -->
+  <section class="trial surface-ink" id="trial" aria-labelledby="trial-title">
+    <div class="wrap">
+      <header class="trial__head">
+        <p class="sec-index"><b>05</b> Free trial</p>
+        <h2 class="trial__title" id="trial-title"><span class="trial__row">First</span> <span class="trial__row trial__row--2">session’s</span> <span class="trial__row trial__row--3">on us.</span></h2>
+        <p class="sec-lede">Pick a program and a day. The front desk confirms within one business day — no payment details, no commitment, no pressure on your kid.</p>
+      </header>
+
+      <div class="trial__grid">
+        <form class="trial-form" data-trial-form action="#" method="post">
+          <fieldset class="field">
+            <legend>Program</legend>
+            <div class="picks">
+              <label class="pick"><input type="radio" name="program" value="Youth Wrestling" required><span><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-wrestling"/></svg>Wrestling</span></label>
+              <label class="pick"><input type="radio" name="program" value="Club Volleyball"><span><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-volleyball"/></svg>Volleyball</span></label>
+              <label class="pick"><input type="radio" name="program" value="Speed &amp; Agility"><span><svg class="glyph" aria-hidden="true" focusable="false"><use href="#g-speed"/></svg>Speed &amp; Agility</span></label>
+              <label class="pick"><input type="radio" name="program" value="a program (we’ll help pick)"><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="field__label" for="f-age">Athlete’s age</label>
+              <select id="f-age" name="age" required>
+                <option value="">Choose age</option>
+                <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+                <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-name">Parent or guardian name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="First and last name">
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>Best day to try it</legend>
+            <div class="picks picks--days">
+              <label class="pick"><input type="radio" name="day" value="Monday" required><span>Mon</span></label>
+              <label class="pick"><input type="radio" name="day" value="Tuesday"><span>Tue</span></label>
+              <label class="pick"><input type="radio" name="day" value="Wednesday"><span>Wed</span></label>
+              <label class="pick"><input type="radio" name="day" value="Thursday"><span>Thu</span></label>
+              <label class="pick"><input type="radio" name="day" value="Friday"><span>Fri</span></label>
+              <label class="pick"><input type="radio" name="day" value="Saturday"><span>Sat</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label class="field__label" for="f-contact">Mobile number or email</label>
+            <input id="f-contact" name="contact" type="text" autocomplete="email" inputmode="email" required placeholder="So we can confirm your spot">
+          </div>
+
+          <div class="form-foot">
+            <button class="btn btn--accent btn--lg" type="submit">Request my free trial <svg class="btn__arrow" aria-hidden="true" focusable="false"><use href="#g-arrow"/></svg></button>
+            <p class="form-note mono">Demo site — this form doesn’t send anything yet.</p>
+            <div class="form-status" role="status" aria-live="polite" data-form-status></div>
+          </div>
+        </form>
+
+        <aside class="visit" id="visit" aria-labelledby="visit-title">
+          <h3 class="visit__title" id="visit-title">Find us</h3>
+          <svg class="map" viewBox="0 0 400 230" role="img" aria-label="Illustrative map: Copperline sits inside a bend of the Meramec River, just off I-44 in Valley Park.">
+            <rect class="map__land" width="400" height="230"/>
+            <path class="map__street" d="M0 36h400M0 96h400M0 168h400M58 0v230M152 0v230M252 0v230M338 0v230"/>
+            <path class="map__river" d="M-20 52C64 50 98 88 116 136s76 84 150 66 88-112 154-150"/>
+            <path class="map__river-edge" d="M-20 52C64 50 98 88 116 136s76 84 150 66 88-112 154-150"/>
+            <text class="map__river-t" x="78" y="34">MERAMEC RIVER</text>
+            <path class="map__road" d="M-10 226L410 104"/>
+            <g transform="translate(64 194)"><rect class="map__shield" x="-20" y="-11" width="40" height="22" rx="3"/><text class="map__shield-t" x="0" y="0">I-44</text></g>
+            <circle class="map__pulse" cx="214" cy="130" r="10"/>
+            <path class="map__pin" d="M214 142c-8-10-12-16-12-22a12 12 0 0 1 24 0c0 6-4 12-12 22z"/>
+            <text class="map__label" x="234" y="118">COPPERLINE</text>
+          </svg>
+          <address class="visit__addr">410 Meramec Bend Dr<br>Valley Park, MO 63088<span>Off I-44. Free parking out front, drop-off lane by the south doors.</span></address>
+          <dl class="hours">
+            <div><dt>Mon – Fri</dt><dd>3:30 – 9:30 PM</dd></div>
+            <div><dt>Saturday</dt><dd>8:30 AM – 2:30 PM</dd></div>
+            <div><dt>Sunday</dt><dd>Closed · recovery day</dd></div>
+          </dl>
+          <p class="contact">
+            <a href="tel:+13145550142"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3h4l2 5-3 2a12 12 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A18 18 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>(314) 555-0142</a>
+            <a href="mailto:frontdesk@copperline-athletics.example"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg>frontdesk@copperline-athletics.example</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer surface-ink">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="colorway">
+        <p class="colorway__label mono"><b>Club colors are one token, not a rebuild.</b> Try another colorway:</p>
+        <div class="swatches" role="group" aria-label="Accent colorway">
+          <button type="button" class="swatch" data-colorway-btn="volt" aria-pressed="true" style="--sw:#D4FF1E"><i aria-hidden="true"></i>Volt</button>
+          <button type="button" class="swatch" data-colorway-btn="signal" aria-pressed="false" style="--sw:#FF5B1F"><i aria-hidden="true"></i>Signal</button>
+          <button type="button" class="swatch" data-colorway-btn="ice" aria-pressed="false" style="--sw:#5BE2FF"><i aria-hidden="true"></i>Ice</button>
+          <button type="button" class="swatch" data-colorway-btn="flare" aria-pressed="false" style="--sw:#FF4FA0"><i aria-hidden="true"></i>Flare</button>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#programs">Programs</a><a href="#schedule">Schedule</a><a href="#coaches">Coaches</a><a href="#facility">Facility</a><a href="#trial">Free trial</a>
+      </nav>
+    </div>
+    <p class="footer__word" aria-hidden="true">Copperline</p>
+  </div>
+  <div class="wrap">
+    <div class="footer__meta mono">
+      <p>© 2026 Copperline Athletics</p>
+      <p class="footer__demo">Demo site · fictional club</p>
+      <p>Built on WebForge · Kinetic</p>
+    </div>
+  </div>
+</footer>
+
+<div class="action-bar surface-ink" data-action-bar>
+  <a class="btn btn--ghost" href="#schedule">Schedule</a>
+  <a class="btn btn--accent" href="#trial">Book a free trial</a>
+</div>
+
+<!-- WF-DEMO-RIBBON-SPACE:START -->
+<div id="wf-ribbon-space" aria-hidden="true" style="display:block;height:40px;margin:0;padding:0;border:0"></div>
+<!-- WF-DEMO-RIBBON-SPACE:END -->
+</body>
+</html>

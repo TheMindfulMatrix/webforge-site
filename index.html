@@ -2,199 +2,552 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WebForge — websites for youth sports clubs and training facilities</title>
-<meta name="description" content="Websites for youth sports clubs, training facilities and studios in St. Louis. $19.99 for a demo, $750 to build it for real, $49 a month to keep it working. You own everything.">
-<meta property="og:title" content="WebForge — websites for youth sports clubs">
-<meta property="og:description" content="See a demo of your site for $19.99 before you spend $750. You own everything.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WebForge — websites for youth sports clubs · St. Louis</title>
+<meta name="description" content="I checked 35 club websites around St. Louis and 28 had something concretely wrong. WebForge builds websites for youth sports clubs, training facilities and studios: a $19.99 demo, a $750 build, and you own it outright.">
+<meta property="og:title" content="WebForge — most club websites break quietly">
+<meta property="og:description" content="35 St. Louis club sites checked, 28 with something wrong. Four site styles, your colors, $0 activation fee.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0A0B">
+<!-- ICONS + SHARING · same on every page; only canonical and og:url change per page -->
+<link rel="canonical" href="https://webforgecreate.org/">
+<meta property="og:url" content="https://webforgecreate.org/">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:site_name" content="WebForge">
+<meta property="og:image" content="https://webforgecreate.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WebForge — Most club websites break quietly. 35 St. Louis club sites checked, 28 had something concretely wrong.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- HEAD · copy the six lines below into every page (the inline script stops the phone menu flashing open) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
 
-<header class="site">
-  <div class="wrap bar">
-    <a class="brand" href="index.html">Web<span>Forge</span></a>
-    <nav class="site" aria-label="Main">
-      <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="what-you-get.html">What you get</a></li>
-        <li><a href="work.html">Work</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="start.html">Start</a></li>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE HEADER · copy this block verbatim into every page.
+     The ONLY change per page: move aria-current="page" to that page's link.
+     (On the Styles link, leave it off — it is a spot on the home page.)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<header class="site-header surface-ink" data-header>
+  <div class="site-header__inner">
+    <a class="brand" href="index.html">
+      <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+      <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__bars" aria-hidden="true"></span><span data-nav-label>Menu</span></button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="index.html" aria-current="page"><span class="nav__no" aria-hidden="true">01</span>Home</a></li>
+        <li><a href="what-you-get.html"><span class="nav__no" aria-hidden="true">02</span>What you get</a></li>
+        <li><a href="index.html#styles"><span class="nav__no" aria-hidden="true">03</span>Styles</a></li>
+        <li><a href="pricing.html"><span class="nav__no" aria-hidden="true">04</span>Pricing</a></li>
+        <li class="nav__start"><a class="btn btn--accent btn--sm" href="start.html"><span class="nav__no" aria-hidden="true">05</span>Start <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a></li>
       </ul>
     </nav>
   </div>
 </header>
+<!-- ═══════════════════════════ END SITE HEADER ═══════════════════════════ -->
 
 <main id="main">
 
-  <div class="wrap hero">
-    <p class="eyebrow">St. Louis · youth sports &amp; training</p>
-    <h1>Most club websites break quietly.</h1>
-    <p class="lede">
-      I checked 35 of them around St. Louis. Twenty-eight had something concretely wrong — and
-      nobody at those clubs knew.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="start.html">Get your site checked, free</a>
-      <a class="btn btn-ghost" href="pricing.html">See pricing</a>
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero surface-ink" id="top" aria-labelledby="hero-title" data-hero>
+    <canvas class="hero__lanes" aria-hidden="true"></canvas>
+    <div class="wrap hero__grid">
+      <p class="hero__meta mono"><span>St. Louis</span><span>Youth sports clubs</span><span>One person</span></p>
+
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__line hero__line--1"><span class="hero__word">Most club</span></span>
+        <span class="hero__line hero__line--2"><span class="hero__word">websites</span></span>
+        <span class="hero__line hero__line--3"><span class="hero__word"><span class="crack"><span class="crack__a">break</span><span class="crack__b" aria-hidden="true">break</span></span></span></span>
+        <span class="hero__line hero__line--4"><span class="hero__word">quietly.</span></span>
+      </h1>
+
+      <div class="hero__aside">
+        <p class="hero__lede">I checked <strong>35 club websites</strong> around St.&nbsp;Louis. <strong>28 had something concretely wrong</strong> — the kind of thing that’s easy to miss from the inside. I build websites for youth sports clubs, training facilities and studios, and I can keep them working after launch.</p>
+        <div class="hero__ctas" data-hero-ctas>
+          <a class="btn btn--accent" href="start.html#check">Get your site checked, free <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          <a class="btn btn--ghost" href="#styles">See the four styles</a>
+        </div>
+        <div class="check-card">
+          <p class="check-card__label mono"><span class="ping" aria-hidden="true"></span>What the free check looks at</p>
+          <ol class="check-card__list">
+            <li><span class="mono" aria-hidden="true">01</span>Does your domain actually load?</li>
+            <li><span class="mono" aria-hidden="true">02</span>How does it behave on a phone?</li>
+            <li><span class="mono" aria-hidden="true">03</span>Is anything years out of date?</li>
+            <li><span class="mono" aria-hidden="true">04</span>What does a parent see first?</li>
+          </ol>
+          <p class="check-card__foot mono">Free · no obligation · the same check I ran on all 35</p>
+          <span class="check-card__scan" aria-hidden="true"></span>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ═══════════ TAPES ═══════════ -->
+  <div class="tapes" aria-hidden="true">
+    <div class="tape tape--back surface-chalk"><div class="tape__lean"><div class="tape__track">
+      <span>$19.99 demo</span><i></i><span>$750 build</span><i></i><span>You own it</span><i></i><span>$0 activation fee</span><i></i><span>St. Louis</span><i></i><span>$19.99 demo</span><i></i><span>$750 build</span><i></i><span>You own it</span><i></i><span>$0 activation fee</span><i></i><span>St. Louis</span><i></i>
+      <span>$19.99 demo</span><i></i><span>$750 build</span><i></i><span>You own it</span><i></i><span>$0 activation fee</span><i></i><span>St. Louis</span><i></i><span>$19.99 demo</span><i></i><span>$750 build</span><i></i><span>You own it</span><i></i><span>$0 activation fee</span><i></i><span>St. Louis</span><i></i>
+    </div></div></div>
+    <div class="tape tape--front surface-accent"><div class="tape__lean"><div class="tape__track">
+      <span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Your colors</span><i></i><span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Your colors</span><i></i>
+      <span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Your colors</span><i></i><span>Kinetic</span><i></i><span>Cinematic</span><i></i><span>Bright Club</span><i></i><span>Precision</span><i></i><span>Your colors</span><i></i>
+    </div></div></div>
   </div>
 
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow">The audit, July 2026</p>
-      <h2>What I actually found</h2>
-      <div class="stats">
-        <div class="stat"><b>35</b><span>sites checked</span></div>
-        <div class="stat"><b>28</b><span>with real defects</span></div>
-        <div class="stat"><b>1</b><span>completely offline</span></div>
-        <div class="stat"><b>2.4MB</b><span>heaviest page</span></div>
+  <!-- ═══════════ 01 · THE AUDIT ═══════════ -->
+  <section class="audit surface-ink" id="audit" aria-labelledby="audit-title">
+    <div class="audit__head">
+      <div class="wrap">
+        <header class="sec-head sec-head--row">
+          <div class="sec-head">
+            <p class="sec-index"><b>01</b> The audit · July 2026</p>
+            <h2 class="sec-title" id="audit-title" data-reveal>I checked<br>35 club sites.</h2>
+          </div>
+          <p class="sec-lede" data-reveal style="--i:1">Real clubs, gyms and studios around St.&nbsp;Louis. I looked at what a parent actually runs into: does the site load, does it work on a phone, is anything out of date. Here’s the scoreboard.</p>
+        </header>
       </div>
+    </div>
 
-      <ol class="findings">
-        <li>
-          <h3>A domain pointing nowhere</h3>
-          <p>A club with hundreds of athletes had every page return an error instead of their site.
-          Every parent who searched them and clicked got nothing. Nobody there knew.</p>
+    <div class="score surface-accent">
+      <div class="wrap">
+        <p class="score__eyebrow mono"><span>The scoreboard</span><span>35 sites · St. Louis · July 2026</span></p>
+        <ul class="score__list">
+          <li class="stat" data-reveal style="--i:0">
+            <p class="stat__num"><span data-odometer>35</span></p>
+            <p class="stat__label">Club sites checked<span>Youth clubs, training facilities and studios.</span></p>
+          </li>
+          <li class="stat" data-reveal style="--i:1">
+            <p class="stat__num"><span data-odometer>28</span></p>
+            <p class="stat__label">Had something concretely wrong<span>Not taste. Things that were broken or out of date.</span></p>
+          </li>
+          <li class="stat" data-reveal style="--i:2">
+            <p class="stat__num"><span data-odometer>1</span></p>
+            <p class="stat__label">Completely offline<span>A club with hundreds of athletes. Every page, an error.</span></p>
+          </li>
+          <li class="stat" data-reveal style="--i:3">
+            <p class="stat__num"><span data-odometer>2.4</span><span class="stat__unit">MB</span></p>
+            <p class="stat__label">Heaviest page<span>Slow going for a parent on mobile data.</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="findings surface-ink">
+      <div class="wrap">
+        <p class="findings__label mono">Four things I kept finding</p>
+        <ol class="lanes">
+          <li class="lane" data-reveal>
+            <span class="lane__no" aria-hidden="true">01</span>
+            <div class="lane__head">
+              <h3 class="lane__name">A domain pointing nowhere</h3>
+              <p class="lane__tag mono">1 of 35 · fully offline</p>
+            </div>
+            <div class="lane__body">
+              <p class="lane__text">A club with hundreds of athletes had every page return an error instead of their site. Every parent who searched and clicked got nothing. There was no way to tell how long it had been down.</p>
+            </div>
+            <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+              <path pathLength="1" d="M2 60h42"/>
+              <path pathLength="1" d="M44 46h20v28H44z"/>
+              <path pathLength="1" d="M64 53h10M64 67h10"/>
+              <path pathLength="1" d="M102 42h22v36h-22z"/>
+              <path pathLength="1" d="M124 60h34"/>
+              <path class="art-spark" pathLength="1" d="M83 40l4 8M91 70l-3 9M84 59h8"/>
+            </svg>
+          </li>
+          <li class="lane" data-reveal>
+            <span class="lane__no" aria-hidden="true">02</span>
+            <div class="lane__head">
+              <h3 class="lane__name">Pages too heavy for a phone</h3>
+              <p class="lane__tag mono">Heaviest · 2.4 MB</p>
+            </div>
+            <div class="lane__body">
+              <p class="lane__text">One page weighed 2.4&nbsp;MB. A parent checking practice times on mobile data waits for every byte of it.</p>
+            </div>
+            <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+              <path pathLength="1" d="M40 6h44v88H40z"/>
+              <path pathLength="1" d="M40 18h44M40 82h44"/>
+              <path pathLength="1" d="M48 50h28"/>
+              <path class="art-load" pathLength="1" d="M48 50h9"/>
+              <path pathLength="1" d="M108 58a14 14 0 0 1 28 0"/>
+              <circle pathLength="1" cx="122" cy="76" r="17"/>
+            </svg>
+          </li>
+          <li class="lane" data-reveal>
+            <span class="lane__no" aria-hidden="true">03</span>
+            <div class="lane__head">
+              <h3 class="lane__name">Footers years out of date</h3>
+              <p class="lane__tag mono">5 sites · as old as 2017</p>
+            </div>
+            <div class="lane__body">
+              <p class="lane__text">Copyright years stuck at 2017, 2019, 2020. The site quietly tells a new family that the program might not exist anymore.</p>
+            </div>
+            <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+              <path pathLength="1" d="M26 16h104v78H26z"/>
+              <path pathLength="1" d="M26 34h104M52 8v16M104 8v16"/>
+              <path pathLength="1" d="M26 54h104M26 74h104M52 34v60M78 34v60M104 34v60"/>
+              <path class="art-web" pathLength="1" d="M130 16h-24M130 16v24M130 16l-18 18M112 16a18 18 0 0 0 18 18M120 16a10 10 0 0 0 10 10"/>
+            </svg>
+          </li>
+          <li class="lane" data-reveal>
+            <span class="lane__no" aria-hidden="true">04</span>
+            <div class="lane__head">
+              <h3 class="lane__name">Two live domains, same content</h3>
+              <p class="lane__tag mono">One club, two addresses</p>
+            </div>
+            <div class="lane__body">
+              <p class="lane__text">Two addresses showing the same site. Parents land on whichever one a search happens to show that day.</p>
+            </div>
+            <svg class="lane__art" viewBox="0 0 160 100" aria-hidden="true" focusable="false">
+              <path pathLength="1" d="M8 10h84v56H8z"/>
+              <path pathLength="1" d="M8 22h84"/>
+              <path class="art-twin" pathLength="1" d="M68 36h84v56H68z"/>
+              <path class="art-twin" pathLength="1" d="M68 48h84"/>
+            </svg>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="thesis surface-chalk">
+      <div class="wrap thesis__inner">
+        <p class="sec-index"><b>→</b> The pattern</p>
+        <h3 class="thesis__title" data-reveal><span class="thesis__row">Not a <s class="strike">design</s> problem.</span> <span class="thesis__row thesis__row--2">A maintenance problem.</span></h3>
+        <div class="thesis__body" data-reveal style="--i:1">
+          <p class="thesis__quote">“A broken domain isn’t a site that was built badly. It’s a site nobody was responsible for.”</p>
+          <p>That’s the part I’m actually selling. I build the site — and if you want, I keep watching it after launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 · FOUR STYLES, ONE SYSTEM ═══════════ -->
+  <section class="styles surface-ink" id="styles" aria-labelledby="styles-title" data-styles>
+    <div class="wrap">
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>02</b> Four styles, one system</p>
+          <h2 class="sec-title" id="styles-title" data-reveal>Four styles.<br>One system.<br><span class="hl">Your colors.</span></h2>
+        </div>
+        <div class="sec-aside" data-reveal style="--i:1">
+          <p class="sec-lede">Every site I build starts from one design system with four distinct styles — so no two clubs end up with the same-looking site. You pick the feel. It takes your club’s colors.</p>
+          <div class="colorway" role="group" aria-labelledby="cw-label">
+            <p class="colorway__label mono" id="cw-label"><b>Try a club color.</b> This page and all four previews re-color.</p>
+            <div class="swatches">
+              <button type="button" class="swatch" data-colorway-btn="forge" aria-pressed="true"><i aria-hidden="true"></i>WebForge</button>
+              <button type="button" class="swatch" data-colorway-btn="volt" aria-pressed="false"><i aria-hidden="true"></i>Volt</button>
+              <button type="button" class="swatch" data-colorway-btn="royal" aria-pressed="false"><i aria-hidden="true"></i>Royal</button>
+              <button type="button" class="swatch" data-colorway-btn="kelly" aria-pressed="false"><i aria-hidden="true"></i>Kelly</button>
+              <button type="button" class="swatch" data-colorway-btn="flare" aria-pressed="false"><i aria-hidden="true"></i>Flare</button>
+            </div>
+            <p class="sr-only" aria-live="polite" data-colorway-status></p>
+          </div>
+        </div>
+      </header>
+
+      <p class="demo-note mono"><span class="demo-note__flag">Demo club</span><span>Every demo below is for <b>Copperline Athletics</b>, a made-up club. They show the styles. They are not client work.</span></p>
+
+      <ol class="style-lanes">
+        <!-- Kinetic -->
+        <li class="style-lane" data-style="kinetic" data-reveal>
+          <span class="lane__no" aria-hidden="true">01</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Kinetic</h3>
+            <p class="style-lane__line">Athletic campaign energy. Big leaning type, scoreboard numbers, tapes that react to your scroll.</p>
+            <p class="style-lane__fit mono">Good fit · competitive clubs, speed &amp; strength</p>
+            <p class="style-lane__here mono">You’re looking at it — this page is Kinetic in <span data-colorway-name>WebForge orange</span>.</p>
+            <a class="style-lane__link" href="demos/kinetic/index.html">Open the live demo<span class="sr-only"> of the Kinetic style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--kinetic" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mk-lines"></span>
+              <span class="mk-run mk-run--1"></span><span class="mk-run mk-run--2"></span>
+              <p class="mk-meta">Valley Park / Ages 8–18</p>
+              <p class="mk-head"><span class="mk-hollow">Faster.</span><span class="mk-solid">Stronger.</span><span class="mk-lit">Braver.</span></p>
+              <span class="mk-btn">Book a free trial</span>
+              <div class="mk-tape mk-tape--back"><div class="mk-track"><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span><span>First session free ▬ Ages 8–18 ▬ First session free ▬ Ages 8–18 ▬&nbsp;</span></div></div>
+              <div class="mk-tape"><div class="mk-track"><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span><span>Wrestling ■ Volleyball ■ Speed ■ Wrestling ■ Volleyball ■ Speed ■&nbsp;</span></div></div>
+            </div>
+          </div>
         </li>
-        <li>
-          <h3>Pages too heavy for a phone</h3>
-          <p>One site weighed 2.4&nbsp;MB. A parent checking practice times on mobile data gives up
-          before it finishes loading.</p>
+
+        <!-- Cinematic -->
+        <li class="style-lane" data-style="cinematic" data-reveal>
+          <span class="lane__no" aria-hidden="true">02</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Cinematic</h3>
+            <p class="style-lane__line">Dark and filmic. Light, shadow and slow reveals — it feels directed, like the opening of a film.</p>
+            <p class="style-lane__fit mono">Good fit · elite programs, martial arts, a club with a story</p>
+            <a class="style-lane__link" href="demos/cinematic/index.html">Open the live demo<span class="sr-only"> of the Cinematic style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--cinematic" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mc-light"></span>
+              <span class="mc-flare"></span>
+              <span class="mc-dust"></span>
+              <p class="mc-tc"><b></b>TC 00:00:12:04 · SC 01</p>
+              <p class="mc-title"><em>Copperline</em><span>Athletics · a training film</span></p>
+              <span class="mc-btn">Book a free trial</span>
+              <span class="mc-bars"></span>
+            </div>
+          </div>
         </li>
-        <li>
-          <h3>Seasons that ended two years ago</h3>
-          <p>Stale schedules, dead footers. The site quietly tells a new family that the program
-          might not exist anymore.</p>
+
+        <!-- Bright Club -->
+        <li class="style-lane" data-style="brightclub" data-reveal>
+          <span class="lane__no" aria-hidden="true">03</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Bright Club</h3>
+            <p class="style-lane__line">Warm, friendly, colorful. Built for a parent on a phone, with nothing to wait for.</p>
+            <p class="style-lane__fit mono">Good fit · youth programs, gymnastics, first-timers</p>
+            <a class="style-lane__link" href="demos/brightclub/index.html">Open the live demo<span class="sr-only"> of the Bright Club style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--bright" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <svg class="mb-wave" viewBox="0 0 160 100" preserveAspectRatio="none"><path d="M-10 78C30 40 64 96 104 60s44-30 66-34"/></svg>
+              <p class="mb-head">Where kids get good at <span class="mb-sticker">hard things.</span></p>
+              <span class="mb-btn">Book a free trial →</span>
+              <span class="mb-court"></span>
+              <span class="mb-ticket"><b>Free trial pass</b><span>Admit one athlete</span><i></i></span>
+              <span class="mb-burst"><b>8–18</b></span>
+            </div>
+          </div>
         </li>
-        <li>
-          <h3>Two live domains, same content</h3>
-          <p>Split traffic, split search results, and parents landing on whichever one Google felt
-          like showing that day.</p>
+
+        <!-- Precision -->
+        <li class="style-lane" data-style="precision" data-reveal>
+          <span class="lane__no" aria-hidden="true">04</span>
+          <div class="style-lane__body">
+            <h3 class="style-lane__name">Precision</h3>
+            <p class="style-lane__line">Sleek and minimal. A clean grid, a live “today” dial, and nothing extra.</p>
+            <p class="style-lane__fit mono">Good fit · training facilities, performance gyms, studios</p>
+            <a class="style-lane__link" href="demos/precision/index.html">Open the live demo<span class="sr-only"> of the Precision style (fictional club)</span> <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          </div>
+          <div class="mini mini--precision" aria-hidden="true">
+            <div class="mini__bar"><i></i><i></i><i></i><span>copperline · demo</span></div>
+            <div class="mini__stage">
+              <span class="mp-grid"></span>
+              <p class="mp-meta">Youth training · ages 8–18</p>
+              <p class="mp-head">Get better on purpose<b>.</b></p>
+              <span class="mp-btn">Book a free trial</span>
+              <svg class="mp-dial" viewBox="0 0 120 120">
+                <circle class="mp-ticks" cx="60" cy="60" r="56" pathLength="120"/>
+                <circle class="mp-track" cx="60" cy="60" r="46"/>
+                <circle class="mp-arc mp-arc--ink" cx="60" cy="60" r="46" pathLength="100"/>
+                <circle class="mp-arc mp-arc--hot" cx="60" cy="60" r="46" pathLength="100"/>
+                <circle class="mp-face" cx="60" cy="60" r="34"/>
+                <text class="mp-t1" x="60" y="54">UP NEXT</text>
+                <text class="mp-t2" x="60" y="66">Speed</text>
+                <text class="mp-t3" x="60" y="76">4:30 PM</text>
+                <g class="mp-needle"><path d="M60 4v20"/><circle cx="60" cy="8" r="2.5"/></g>
+              </svg>
+            </div>
+          </div>
         </li>
       </ol>
 
-      <div class="note">
-        <p><em class="hl">None of these are design problems.</em> They're maintenance problems. A
-        broken domain isn't a site that was built badly — it's a site nobody was responsible for.</p>
-        <p>That's the part I'm actually selling.</p>
+      <div class="pricing__foot">
+        <a class="btn btn--ghost" href="work.html#try">One thing to try in each demo <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- ═══════════ 03 · HOW IT WORKS ═══════════ -->
+  <section class="how surface-chalk" id="how" aria-labelledby="how-title">
     <div class="wrap">
-      <p class="eyebrow">How it works</p>
-      <h2>See it before you buy it.</h2>
-      <div class="tiers">
-        <div class="tier">
-          <h3>Step one</h3>
-          <div class="amt">$19.99</div>
-          <p>Answer some questions about your club and get a draft of your own site back — your
-          programs, your content. View it on your shelf. Build as many as you want.</p>
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>03</b> How it works</p>
+          <h2 class="sec-title" id="how-title" data-reveal>See it before<br>you buy it.</h2>
         </div>
-        <div class="tier">
-          <h3>Step two</h3>
-          <div class="amt">$750</div>
-          <p>I build it properly and launch it. Two rounds of revisions. <strong>You own the site,
-          the content and the domain</strong> — no activation fee, no unlock, no third payment.</p>
-        </div>
-        <div class="tier">
-          <h3>Optional</h3>
-          <div class="amt">$49<small> / month</small></div>
-          <p>Monitoring plus unlimited small changes — text, prices, hours, photos. Bigger changes
-          quoted first. Cancel any time, no notice.</p>
-        </div>
-      </div>
-      <div class="actions">
-        <a class="btn btn-ghost" href="what-you-get.html">Exactly what's included</a>
-      </div>
-    </div>
-  </section>
+        <p class="sec-lede" data-reveal style="--i:1">Four steps, and no sales call required. You see a draft of your own site before you spend real money.</p>
+      </header>
 
-  <section class="band">
-    <div class="wrap">
-      <p class="eyebrow">The process</p>
-      <h2>Four steps, no sales call required.</h2>
       <ol class="steps">
-        <li>
-          <h3>You answer the questions</h3>
-          <p>What you do, who you serve, what the site actually needs to accomplish, what isn't
-          working now. A few minutes.</p>
+        <li class="step" data-reveal style="--i:0">
+          <span class="step__no" aria-hidden="true">01</span>
+          <p class="step__tag mono">About ten minutes</p>
+          <h3 class="step__title">You answer the questions</h3>
+          <p class="step__text">What you do, who you serve, what the site needs to accomplish, and what isn’t working now.</p>
         </li>
-        <li>
-          <h3>You get a demo for $19.99</h3>
-          <p>A draft of your own site, built from your answers. Yours to look at. Build another if
-          you want to see a different direction.</p>
+        <li class="step" data-reveal style="--i:1">
+          <span class="step__no" aria-hidden="true">02</span>
+          <p class="step__tag mono">$19.99</p>
+          <h3 class="step__title">You get a demo of your site</h3>
+          <p class="step__text">A view-only draft built from your answers. Want to see a different style? Build as many as you like.</p>
         </li>
-        <li>
-          <h3>If you like it, I build it for real — $750</h3>
-          <p>Properly built, two rounds of revisions, launched on your domain. You review it before
-          anyone else sees it.</p>
+        <li class="step" data-reveal style="--i:2">
+          <span class="step__no" aria-hidden="true">03</span>
+          <p class="step__tag mono">$750</p>
+          <h3 class="step__title">I build it for real</h3>
+          <p class="step__text">Two rounds of revisions, then launched on your domain. You review it before anyone else sees it.</p>
         </li>
-        <li>
-          <h3>It launches, and you own it</h3>
-          <p>The site, the content, the domain. The $49 plan is offered then, not before. Saying no
-          is genuinely fine.</p>
+        <li class="step" data-reveal style="--i:3">
+          <span class="step__no" aria-hidden="true">04</span>
+          <p class="step__tag mono">Yours outright</p>
+          <h3 class="step__title">You own it</h3>
+          <p class="step__text">The site, the content, the domain. The $49 care plan is offered then, not before — and saying no is fine.</p>
         </li>
       </ol>
-    </div>
-  </section>
 
-  <section class="band-signal">
-    <div class="wrap">
-      <p class="eyebrow">Free, no obligation</p>
-      <h2>I'll check your site and tell you what's wrong with it.</h2>
-      <p class="lede" style="max-width:52ch">
-        How it loads, how it behaves on a phone, whether your domain is actually resolving, what a
-        parent sees first. The same thing I did to those 35 sites.
-      </p>
-      <p style="max-width:52ch"><strong>You're not obligated to anything.</strong> It's useful to
-      you whether or not you ever hire me.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="start.html">Send me your site</a>
+      <div class="heads-up" role="note">
+        <p class="heads-up__stamp mono">Straight about one thing</p>
+        <p class="heads-up__text">The self-serve demo builder and online payments <strong>aren’t switched on yet</strong>. Right now you email me and I do it with you by hand — same price, same result. I’d rather say that than show you a button that doesn’t work.</p>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- ═══════════ 04 · PRICING ═══════════ -->
+  <section class="pricing surface-ink" id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
-      <p class="eyebrow">Straight about where this is at</p>
-      <h2>I'm one person, and I'm early.</h2>
-      <p class="lede">
-        I'm a college athlete and a senior. I've been in these gyms and facilities my whole life,
-        which is why I started here instead of with restaurants.
-      </p>
-      <p style="max-width:60ch">
-        I don't have a wall of client logos, and I'm not going to borrow somebody else's or pretend
-        otherwise. What I have is the work on the <a href="work.html">Work</a> page, a price you can
-        read without a phone call, and a contract that says you own everything when it's done.
-      </p>
-      <div class="actions">
-        <a class="btn btn-primary" href="start.html">Start with a demo</a>
-        <a class="btn btn-ghost" href="work.html">See the work</a>
+      <header class="sec-head sec-head--row">
+        <div class="sec-head">
+          <p class="sec-index"><b>04</b> Pricing</p>
+          <h2 class="sec-title" id="pricing-title" data-reveal>Three prices,<br>in public.</h2>
+        </div>
+        <p class="sec-lede" data-reveal style="--i:1">No quote that only shows up after you hand someone your phone number. This is the whole list.</p>
+      </header>
+
+      <ol class="prices">
+        <li class="price" data-reveal>
+          <p class="price__amt"><span class="price__cur">$</span>19<span class="price__cents">.99</span></p>
+          <div class="price__head">
+            <h3 class="price__name">A demo of your site</h3>
+            <p class="price__when mono">Step one · one-time</p>
+          </div>
+          <p class="price__text">Answer the questions, get a view-only draft of your own site — your programs, your content. Build as many as you like.</p>
+        </li>
+        <li class="price" data-reveal>
+          <p class="price__amt"><span class="price__cur">$</span>750</p>
+          <div class="price__head">
+            <h3 class="price__name">The build</h3>
+            <p class="price__when mono">Step two · can split $375 / $375</p>
+          </div>
+          <p class="price__text">Two revision rounds, launched on your domain. You own the site, the content and the domain outright.</p>
+        </li>
+        <li class="price" data-reveal>
+          <p class="price__amt"><span class="price__cur">$</span>49<span class="price__per">/mo</span></p>
+          <div class="price__head">
+            <h3 class="price__name">Care, if you want it</h3>
+            <p class="price__when mono">Optional · cancel any time, no notice</p>
+          </div>
+          <p class="price__text">Monitoring plus unlimited small changes — text, prices, hours, photos. Medium and major changes are quoted first.</p>
+        </li>
+      </ol>
+
+      <div class="zero" data-reveal>
+        <p class="zero__num"><span class="zero__lit">$0</span></p>
+        <div class="zero__body">
+          <p class="zero__title">Activation fee.</p>
+          <p class="zero__text">No unlock, no third payment. <strong>$769.99</strong> is the whole price of a site you own.</p>
+        </div>
+      </div>
+
+      <div class="pricing__foot">
+        <a class="btn btn--ghost" href="pricing.html">Full pricing, in plain words <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+        <p class="pricing__note mono">Online payments aren’t switched on yet. Nothing on this site takes money.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 05 · FREE CHECK ═══════════ -->
+  <section class="cta-band surface-accent" id="check" aria-labelledby="check-title">
+    <div class="wrap">
+      <p class="sec-index"><b>05</b> Free, no obligation</p>
+      <h2 class="cta-band__title" id="check-title"><span class="cta-band__row">Free</span> <span class="cta-band__row cta-band__row--2">site</span> <span class="cta-band__row cta-band__row--3">check.</span></h2>
+      <div class="cta-band__grid">
+        <p class="cta-band__lede">Send me your club’s site and I’ll tell you what’s wrong with it: how it loads, how it behaves on a phone, whether your domain is actually resolving, and what a parent sees first. The same check I ran on those 35.</p>
+        <div class="cta-band__act">
+          <a class="btn btn--accent btn--lg" href="start.html#check">Get your site checked, free <svg class="btn__arrow" viewBox="0 0 20 12" aria-hidden="true" focusable="false"><path d="M0 6h17M12 1l5 5-5 5"/></svg></a>
+          <p class="cta-band__note mono">Useful whether or not you ever hire me.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 06 · FOUNDER ═══════════ -->
+  <section class="founder surface-ink-2" id="founder" aria-labelledby="founder-title">
+    <div class="wrap founder__grid">
+      <figure class="jersey" data-reveal>
+        <svg class="jersey__svg" viewBox="0 0 240 250" aria-hidden="true" focusable="false">
+          <path class="jersey__body" pathLength="1" d="M78 8 44 18 6 58l28 34 22-16v166h128V76l22 16 28-34-38-40-34-10c-8 18-24 26-42 26S86 26 78 8z"/>
+          <path class="jersey__trim" pathLength="1" d="M78 8c8 22 24 32 42 32s34-10 42-32"/>
+          <text class="jersey__name" x="120" y="88">REIDEL</text>
+          <text class="jersey__no" x="122" y="200">1</text>
+        </svg>
+        <figcaption class="jersey__cap mono"><b>Roster: 1</b> Gavin Reidel · St. Louis</figcaption>
+      </figure>
+      <div class="founder__body">
+        <p class="sec-index"><b>06</b> Straight about where this is at</p>
+        <h2 class="sec-title founder__title" id="founder-title" data-reveal>I’m one person, and I’m early.</h2>
+        <p class="founder__lede" data-reveal style="--i:1">I’m Gavin Reidel — a college senior and a college athlete in St.&nbsp;Louis. I’ve been in these gyms and facilities my whole life, which is why I started with clubs instead of restaurants.</p>
+        <p class="founder__text" data-reveal style="--i:2">I don’t have a wall of client logos, and I’m not going to borrow somebody else’s or pretend otherwise. What I have is the audit above, four styles you can click through, prices you can read without a phone call — and, in writing, you own everything when it’s done.</p>
+        <div class="founder__ctas">
+          <a class="btn btn--accent" href="start.html#check">Start with a free check</a>
+          <p class="founder__mail">Or email me: <a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="site">
-  <div class="wrap rows">
-    <div>
-      <p class="mark">Web<span>Forge</span></p>
-      <p>St. Louis, Missouri</p>
-      <p><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SITE FOOTER · copy this block verbatim into every page. No changes.
+     The two honesty lines (AI use, no tracking) must stay word for word.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer surface-deep">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <svg class="brand__mark" viewBox="0 0 44 36" aria-hidden="true" focusable="false"><path class="brand__slab" d="M12 0h32L32 36H0z"/><path class="brand__spark" d="M10 9l5 18 6-12 6 12 9-20"/></svg>
+          <span class="brand__word"><span class="brand__name">WebForge</span><span class="brand__sub">Club websites · STL</span></span>
+        </a>
+        <p class="footer__line">Websites for youth sports clubs, training facilities and studios. One person, in St.&nbsp;Louis, Missouri.</p>
+        <p class="footer__mail"><a href="mailto:connect@webforgecreate.org">connect@webforgecreate.org</a></p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="what-you-get.html">What you get</a>
+        <a href="index.html#styles">Styles</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="start.html">Start</a>
+      </nav>
     </div>
-    <div>
-      <p>I use AI tools in my work. I'm responsible for reviewing and delivering everything I hand over.</p>
+    <p class="footer__word" aria-hidden="true">WebForge</p>
+  </div>
+  <div class="footer__meta">
+    <div class="wrap footer__meta-inner">
+      <p>I use AI tools in my work. I’m responsible for reviewing and delivering everything I hand over.</p>
       <p>No tracking, no cookies, no analytics on this site.</p>
+      <p class="mono">© 2026 WebForge · Gavin Reidel</p>
     </div>
   </div>
 </footer>
+<!-- ═══════════════════════════ END SITE FOOTER ═══════════════════════════ -->
+
+<!-- Phone action bar · optional per page; shows once the hero buttons scroll away -->
+<div class="action-bar surface-ink" data-action-bar>
+  <a class="btn btn--ghost" href="index.html#styles">Styles</a>
+  <a class="btn btn--accent" href="start.html#check">Free site check</a>
+</div>
 
 </body>
 </html>
